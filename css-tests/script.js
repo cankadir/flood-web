@@ -47,8 +47,6 @@ buttons.forEach(function(button){
     }
 })
 
-
-
 let closeButtons = document.querySelectorAll('.collapser')
 closeButtons.forEach(function(button){
     button.onclick = function(){
@@ -56,3 +54,57 @@ closeButtons.forEach(function(button){
         box.classList.remove('expanded')
     }
 })
+
+// ---- PREPAREDNESS ----
+
+async function fetchData(url){
+
+    let apikey = process.env.AIRTABLE_KEY
+    let apikey2 = process.env.AIRTABLE_REPO_KEY
+    let Bearer = 'Bearer ' + apikey
+    let headers = {
+        'Content-Type': 'application/json',
+        'Authorization': Bearer
+    }
+
+    let data = await fetch(url, {headers: headers})
+    return data.json()
+}
+
+let url = 'https://api.airtable.com/v0/appvTkmJJRpz8x95D/Preparedness'
+let data = fetchData(url)
+
+// Does #prepare-box's parent have the class expanded?
+let prepareBox = document.querySelector('#prepare-box')
+prepareBox.onclick = function(){
+    if (prepareBox.classList.contains('expanded')){
+        console.log('Prepare box is expanded')
+        prepareBox.querySelector('.box-content').innerHTML = 'Prepare is clicked'
+
+
+        data.then(function(data){
+            console.log( "Data is Ready from Airtable" )
+            let prepareBox = document.querySelector('#prepare-box')
+            let prepareBoxContent = prepareBox.querySelector('.box-content')
+            prepareBoxContent.innerHTML = ''
+            data.records.forEach(function(record){
+                let title = record.fields.Title
+                let content  = record.fields.Content
+                
+                prepareBoxContent.innerHTML += `<h3>${title}</h2><p>${content}</p>`
+                
+
+            })
+        })
+
+
+
+    }else{
+        console.log('Prepare box is not expanded')
+        prepareBox.querySelector('.box-content').innerHTML = 'Prepare'
+
+
+    }
+
+}
+
