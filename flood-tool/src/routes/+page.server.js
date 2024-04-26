@@ -4,7 +4,7 @@ import { PUBLIC_AIRTABLE_APIKEY, PUBLIC_MYCOAST_APIURL } from "$env/static/publi
 
 export async function load({ fetch }) {
 
-    // AIR TABLE
+    // AIR TABLE - Preparedness
     let at_url = 'https://api.airtable.com/v0/appvTkmJJRpz8x95D/Preparedness'
     let Bearer = 'Bearer ' + PUBLIC_AIRTABLE_APIKEY
     const at_res = await fetch( at_url , {
@@ -15,14 +15,14 @@ export async function load({ fetch }) {
     });
 
     const at_data = await at_res.json();
-    console.log("Data Received from Air table");
+    console.log("Data Received from Air table - Prep");
 
     // MY COAST API
     let url = PUBLIC_MYCOAST_APIURL;
     const res = await fetch(url);
     const my_coast_data = await res.json();
 
-    console.log("Data Received");
+    console.log("Data Received - MyCoast");
 
     let lonmin = -74.3600;
     let lonmax = -73.6750;
@@ -46,7 +46,7 @@ export async function load({ fetch }) {
     return {
         props: { 
             mycoast : my_coast_data_filtered,
-            preparedness : at_data.records
+            preparedness : at_data.records,
         }
     };
 }

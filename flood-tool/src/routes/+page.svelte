@@ -6,8 +6,8 @@
 
     let buttonsContent = [
         {Title: 'Flood Sensor data', logo: '🌊', expends:true, ShortContent: 'Some Content Here and it is longer then a single line. So that we can see how it looks', LongContent: {Title:"FloodNet NYC", Link:"", image:'FloodNet-Dashboard.png', Content:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt, ducimus cum? Provident vitae corrupti libero laborum dolorem nesciunt natus recusandae quis? Earum illo repellat odit aperiam labore perspiciatis atque reprehenderit!"}},
-        {Title: 'Participate', logo: '🌊', expends:false, ShortContent: 'Some Content Here and it is longer then a single line. So that we can see how it looks'},
-        {Title: 'Neighborhood Flood Reports', logo: '🌊', expends:false, ShortContent: 'Some Content Here and it is longer then a single line. So that we can see how it looks'},
+        {Title: 'Participate', logo: '🌊', expends:false, link:"", ShortContent: 'Some Content Here and it is longer then a single line. So that we can see how it looks'},
+        {Title: 'Neighborhood Flood Reports', logo: '🌊', expends:false, link:"/local-reports", ShortContent: 'Some Content Here and it is longer then a single line. So that we can see how it looks'},
         {Title: 'Flood Observations', logo: '🌊', expends:true, ShortContent: 'Some Content Here and it is longer then a single line. So that we can see how it looks', LongContent: {Title:"Flood Watch NYC", Link:"", image:'FloodNet-Dashboard.png', Content:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt, ducimus cum? Provident vitae corrupti libero laborum dolorem nesciunt natus recusandae quis? Earum illo repellat odit aperiam labore perspiciatis atque reprehenderit!"}},
         {Title: 'Prepare', logo: '🌊', expends:true, ShortContent: 'Some Content Here and it is longer then a single line. So that we can see how it looks' }
     ];

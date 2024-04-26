@@ -75,7 +75,11 @@
                 {/each}
             {/if}
         </div>
-        <button class="expender" on:click={ (e) => handleClick(e) }><span class="button-content" style="font-weight:bold">{ @html assign_button(button.expends) }</span></button>
+        {#if button.expends}
+            <button class="expender" on:click={ (e) => handleClick(e) }><span class="button-content" style="font-weight:bold">{ @html assign_button(button.expends) }</span></button>
+        {:else}
+            <a href="{button.link}" class="expender" target="_blank">{ @html assign_button(button.expends) }</a>
+        {/if}
     </div>
 
 <style>
