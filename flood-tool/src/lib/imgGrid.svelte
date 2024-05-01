@@ -3,7 +3,7 @@
     // import page
     import { page } from '$app/stores';
     let observations = $page.data.props.mycoast;
-
+    
     function convertDate(date){
         let newDate = new Date(date);
         // convert date to string in mm/dd/yyyy format
@@ -18,26 +18,19 @@
     <p>Recent flood documentation posted by the community members</p>
 </div>
 
-{#await observations}
-    <p>Images are loading from MyCoast...</p>
-{:then observations} 
-
-    <div class="myCoast-photos">
-        
-        {#each observations as observation,i}
-            <div class="my-coast">
-                <img src={observation.properties.picUrl} alt="Coastal {i}"/>
-                <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span><span> {observation.properties.photo_time}</span></p>
-                <p class="photo-content" style="font-style:italic">{observation.properties.comment}</p>
-            </div>
-        {/each}
-
-    </div>
-
-
-
-{/await}
-
+<div class="myCoast-photos">
+    {#await observations}
+        <p>Images are loading from MyCoast...</p>
+    {:then observations} 
+            {#each observations as observation,i}
+                <div class="my-coast">
+                    <img src={observation.properties.picUrl} alt="Coastal {i}"/>
+                    <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span><span> {observation.properties.photo_time}</span></p>
+                    <p class="photo-content" style="font-style:italic">{observation.properties.comment}</p>
+                </div>
+            {/each}
+    {/await}
+</div>
 
 <style>
     .title{
@@ -78,4 +71,5 @@
         margin-top: 0.75rem;
         font-size: 0.75rem;
     }
+    
 </style>

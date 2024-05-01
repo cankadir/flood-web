@@ -1,8 +1,10 @@
 
 <script>
 
-    import Card from '../lib/card.svelte';
-    import ImgGrid from '../lib/imgGrid.svelte';
+    import Card from "../../lib/card.svelte";
+    import ImgGrid from '../../lib/imgGrid.svelte';
+    // import Card from '../../lib/card.svelte';
+    // import ImgGrid from '../lib/imgGrid.svelte';
 
     let buttonsContent = [
         {Title: 'Flood Sensor data', logo: '🌊', expends:true, ShortContent: 'Some Content Here and it is longer then a single line. So that we can see how it looks', LongContent: {Title:"FloodNet NYC", Link:"", image:'FloodNet-Dashboard.png', Content:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt, ducimus cum? Provident vitae corrupti libero laborum dolorem nesciunt natus recusandae quis? Earum illo repellat odit aperiam labore perspiciatis atque reprehenderit!"}},
@@ -47,13 +49,15 @@
         <ImgGrid />
 
     </div>
+
+
 </section>
 
 
 
 <style>
     section {
-        max-width: 1200px;
+        width: 1200px;
         display: flex;
         height: 100%;
         margin: 0 auto 0 auto;

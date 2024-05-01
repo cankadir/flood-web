@@ -1,5 +1,5 @@
 <script>
-    import '../style.css';
+    import '../../style.css';
     let logos = ['facebook','twitter','instagram']
 </script>
 
@@ -77,11 +77,6 @@
         padding: 1rem 0 1rem 0;
     }
 
-    nav{
-        height: 3rem;
-        border-bottom: 1px solid var(--text-color);
-    }
-
     footer{
         height: 12rem;
         border-top: 1px solid var(--text-color);
@@ -92,7 +87,7 @@
     }
 
     main{
-        max-width: var(--site-width);
+        width: var(--site-width);
         margin: 6rem auto 6rem auto;
         display: flex;
         

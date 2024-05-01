@@ -6,7 +6,7 @@
     import { page } from '$app/stores';
     let preparedness = $page.data.props.preparedness;
     
-    console.log( button );
+    // console.log( button );
 
     function assign_button( is_expends){
         if(is_expends){
@@ -37,7 +37,7 @@
             }
         }
         else{
-            console.log("not expending");
+            // console.log("not expending");
         }
     }
 

@@ -6,7 +6,7 @@ import { PUBLIC_AIRTABLE_APIKEY, PUBLIC_MYCOAST_APIURL } from "$env/static/publi
 export async function load({ fetch }) {
 
     // AIRTABLE - Reports
-    let report_boundaries_url = 'https://api.airtable.com/v0/appvTkmJJRpz8x95D/Report%20Boundaries'
+    let report_boundaries_url = "https://api.airtable.com/v0/appvTkmJJRpz8x95D/Report%20Boundaries?filterByFormula=%7Bhas_report%7D+%3D+'Y'"
     let Bearer = 'Bearer ' + PUBLIC_AIRTABLE_APIKEY
 
     const report_res = await fetch( report_boundaries_url , {
@@ -22,6 +22,8 @@ export async function load({ fetch }) {
     // Get geojson from static folder called report-boundaries.geojson
     const report_geo = await fetch('/assets/report_boundaries.geojson');
     const report_geojson = await report_geo.json();
+
+    console.log( report_data.records )
 
     return {
         props: { 
