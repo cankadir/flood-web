@@ -5,9 +5,6 @@
 
     let reports_data = data.props.reports;
     const reports_geo = data.props.report_geojson.features;
-    // console.log( reports_geo )
-    console.log( reports_data )
-    // reports_data = reports_data.filter(report => report.fields.has_report === "Y");
 
     import { onMount, onDestroy } from 'svelte';
     import { browser } from '$app/environment';
@@ -86,7 +83,6 @@
             const select = document.querySelector('select');
             select.addEventListener('change', function(e) {
                 const id = e.target.selectedOptions[0].id;
-                console.log(id);
                 active_polygon = id;
 
                 // remove all clicked classes from other polygons
@@ -99,6 +95,9 @@
         
             });
         }
+
+        // if there is active_polygon, set the .panel height to 100%
+        
     });
 
 
@@ -107,6 +106,23 @@
         const report = reports_data.find(report => report.fields.id === active_polygon);
         const thumbnail = report.fields.thumbnail[0].url;
         return thumbnail;
+    }
+
+
+    // listen for change in active_polygon and if it has a value, set the panel height to 100%
+    $: if(active_polygon) {
+        const panel = document.querySelector('.panel');
+        panel.style.height = '100%';
+    }
+
+    function report_download(e){
+        // get clicked button id
+        const queryID = e.target.parentElement.id;
+        const report = reports_data.find(report => report.fields.id === active_polygon);
+
+        // Download the relevant report, using Airtable links.
+        let report_url = queryID === 'pdf' ? report.fields.Report[0].url : report.fields.thumbnail[0].thumbnails.full.url;
+        window.open(report_url, '_blank');
     }
  
 
@@ -137,14 +153,21 @@
                     <img src="{getImage(active_polygon)}" alt="Report" class="report-viz">
                 {/if}
             </div>
+            
+            {#if active_polygon}
+                <div class="panel-footer">
+                        
+                        <div class="footer-button">Download </div>
+                        
+                        {#each ['pdf','img'] as reporttype}
+                            <button class="download" on:click={(e) => report_download(e)} id="{reporttype}">
+                                <div class="footer-button">{reporttype.toLocaleUpperCase()}</div>
+                                <img src="./assets/icons/FN_FW__report_icon.svg" alt="" width="50" height="50">
+                            </button>
+                        {/each}
 
-            <div class="panel-footer">
-                {#if active_polygon}
-                    <div class="footer-button">download</div>
-                    <div class="footer-button">pdf</div>
-                    <div class="footer-button">Image</div>
-                {/if}
-            </div>
+                </div>
+            {/if}
 
         </div>
     </div>
@@ -157,22 +180,47 @@
 
 <style>
 
+    h3{
+        margin: 0.5rem 0rem
+    }
+
+    button{
+        cursor: pointer;
+    }
+
+    .download{
+        background-color: var(--blue);
+        border: none;
+        padding: 0;
+        margin: 0;
+        color: var(--white);
+        font-weight: bold;
+    }
+
+    .download > img{
+        filter: invert(1);
+    }
+
     .report-viz {
         width: 100%;
         height: auto;
     }
 
     .panel-footer {
-        height: 80px;
+        height: 50px;
         display: grid;
         gap: 1rem;
         grid-template-columns: repeat(3, 1fr);
+        margin-top: 1.5rem;
+        color: var(--white);
+        font-size: 1.1rem;
     }
 
     .panel{
         position: absolute;
+        min-width: 300px;
         width: 30%;
-        height: 100%;
+        height: auto;
         padding: 1rem;
         overflow-y: auto;
         display: flex;
@@ -186,14 +234,15 @@
         background: var(--blue);
         display: flex;
         flex-direction: column;
-        z-index: 10000;
+        z-index: 1000;
         padding: 0.5rem;
+        min-width: 180px;
     }
 
     .reports-container {
         position: relative;
         width: 100%;
-        height: 100vh;
+        height: 100%;
         box-sizing: border-box;
     }
 

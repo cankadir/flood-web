@@ -4,19 +4,7 @@ import { PUBLIC_AIRTABLE_APIKEY, PUBLIC_MYCOAST_APIURL } from "$env/static/publi
 
 export async function load({ fetch }) {
 
-    // AIR TABLE - Preparedness
-    let at_url = 'https://api.airtable.com/v0/appvTkmJJRpz8x95D/Preparedness'
-    let Bearer = 'Bearer ' + PUBLIC_AIRTABLE_APIKEY
-    const at_res = await fetch( at_url , {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': Bearer
-        }  
-    });
-
-    const at_data = await at_res.json();
-    console.log("Data Received from Air table - Prep");
-
+    
     // MY COAST API
     let myCoastURL = PUBLIC_MYCOAST_APIURL;
     const res = fetch(myCoastURL);
@@ -47,7 +35,6 @@ export async function load({ fetch }) {
 
     return {
         props: { 
-            preparedness : at_data.records,
             mycoast : mycoastPromise,
         }
     };

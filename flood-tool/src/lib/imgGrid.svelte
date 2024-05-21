@@ -11,6 +11,8 @@
         return newDate;
     }
 
+    let screenWidth;
+
 </script>
 
 <div class="title">
@@ -18,10 +20,11 @@
     <p>Recent flood documentation posted by the community members</p>
 </div>
 
-<div class="myCoast-photos">
+<div class="myCoast-photos" bind:clientWidth={screenWidth}>
     {#await observations}
         <p>Images are loading from MyCoast...</p>
     {:then observations} 
+        {#if screenWidth > 720 }
             {#each observations as observation,i}
                 <div class="my-coast">
                     <img src={observation.properties.picUrl} alt="Coastal {i}"/>
@@ -29,6 +32,16 @@
                     <p class="photo-content" style="font-style:italic">{observation.properties.comment}</p>
                 </div>
             {/each}
+        {:else}
+            {#each observations.slice(0, 2) as observation,i}
+                <div class="my-coast">
+                    <img src={observation.properties.picUrl} alt="Coastal {i}"/>
+                    <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span><span> {observation.properties.photo_time}</span></p>
+                    <p class="photo-content" style="font-style:italic">{observation.properties.comment}</p>
+                </div>
+            {/each}
+        {/if}
+            
     {/await}
 </div>
 
@@ -48,6 +61,7 @@
 
     .myCoast-photos {
         width: 100%;
+        min-width: 1200px;
         gap: 2rem;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -71,5 +85,18 @@
         margin-top: 0.75rem;
         font-size: 0.75rem;
     }
-    
+
+    /* if screen is smaller then 960 */
+    @media (max-width: 1200px) {
+        .myCoast-photos {
+           min-width: 0px;
+        }
+    }
+
+    @media (max-width: 720px) {
+        .myCoast-photos {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
 </style>

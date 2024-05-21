@@ -5,6 +5,7 @@
     --blue: #5f96cc;
     --orange: #b48502;
     --grey: #333;
+    --white: white;
     --box-min-height: 250px;
     --box-max-height: 700px;
     --box-gap: 10px;
@@ -14,16 +15,15 @@
 
 }
 
-html,body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: var(--blue);
-}
-
 a{
     color: var(--orange);
     text-decoration: none;
     cursor: pointer;
 }
 
+html,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--blue);
+}

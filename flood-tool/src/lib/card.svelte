@@ -3,11 +3,9 @@
     import SvelteMarkdown from 'svelte-markdown'
 
     export let button;
-    import { page } from '$app/stores';
-    let preparedness = $page.data.props.preparedness;
+    // import { page } from '$app/stores';
+    // let preparedness = $page.data.props.preparedness;
     
-    // console.log( button );
-
     function assign_button( is_expends){
         if(is_expends){
             return "&#43;"; // Plus Sign
@@ -35,46 +33,55 @@
             for(let i = 0; i < content.length; i++){
                 content[i].classList.toggle("hidden");
             }
-        }
-        else{
-            // console.log("not expending");
+
+            // check if the box is expended
+            if(clicked_box.classList.contains("expended")){
+                console.log("Expended");
+                // change the e's content to -
+                e.target.innerHTML = "&#8722;";
+            }else{
+                console.log("Not Expended");
+                // change the e's content to +
+                e.target.innerHTML = "&#43;";
+            }
+
+
         }
     }
 
 </script>
 
-
     <div class="box" id="{button.Title.toLowerCase().replaceAll(" ","-")}">
-        <div class="logo">{button.logo}</div>
-
+        <div class="logo">
+            <img src="{button.logo}" alt="item icon" class="box-logo" />
+        </div>
+        
         <!-- This gets replaced on click -->
         <div class="box-content">
             <h3>{button.Title}</h3>
             <p class="box-text">{button.ShortContent}</p>
         </div>
 
+        <!-- For Flood Net and Flood Watch Boxes-->
         <div class="box-content hidden">
             <h3>{button.Title}</h3>
             <p class="box-text">{button.ShortContent}</p>
             <!-- if there is a LongContent key in the button -->
             
-            {#if button.Title != "Prepare"}
-                {#if Object.keys(button).includes("LongContent")}
-                    <div class="titlelink">
-                    <div>&#10132;</div>
-                    <a style="color:var(--blue);cursor:pointer;" href="{button.LongContent.Link}"><h3>{button.LongContent.Title}</h3></a>
-                    </div>
-                    <p class="long-content">{button.LongContent.Content}</p>
-                    <img class='long-image' src="./assets/{button.LongContent.image}" alt="Dashboard View">
-                {/if}
-            {:else}
-                {#each preparedness as prep}
-                    <h4>{prep.fields.Subtitle}</h4>
-                    <a href="{prep.fields.link}" class="helplink"><span>{prep.fields.link}</span></a>
-                    <SvelteMarkdown source={prep.fields.Content} class='md'/>
-                {/each}
+            {#if Object.keys(button).includes("LongContent")}
+                <!-- Link the the site -->
+                <div class="titlelink">
+                    <div>&#10142;</div>
+                    <a style="color:var(--blue);cursor:pointer;" href="../floodnet" target="_blank">{button.LongContent.Title}</a>
+                </div>
+                
+                <p class="long-content">{button.LongContent.Content}</p>
+                <img class='long-image' src="./assets/{button.LongContent.image}" alt="Dashboard View">
             {/if}
+
         </div>
+
+
         {#if button.expends}
             <button class="expender" on:click={ (e) => handleClick(e) }><span class="button-content" style="font-weight:bold">{ @html assign_button(button.expends) }</span></button>
         {:else}
@@ -86,15 +93,16 @@
     .titlelink{
         display: flex;
         align-items: center;
-        margin: 1rem 0;
-        font-size: 3 rem;
+        margin: 0.5rem 0rem;
+        padding-left: 0.5rem;
+        font-size: 1.5rem;
         font-weight: bold;
         gap: 1rem;
         color: var(--blue);
         border-radius: 10px;
         height: 3rem;
         align-items: center;
-        z-index: 10;
+        z-index: 1000;
     }
 
     .titlelink:hover{
@@ -103,10 +111,11 @@
     }
 
     .titlelink:hover > a{
-        color: var(--white);
+        color: var(--white) !important;
     }
 
     img{
+        margin-top: 2rem;
         width:100%;
         height: auto;
     }
@@ -116,8 +125,12 @@
     }
 
     .box-content{
-        pointer-events: none !important;
         margin-bottom: 1.7rem;
+        user-select: none;
+    }
+
+    .box-content > p{
+        margin: 0.5rem 0;
     }
 
     h4{
@@ -136,7 +149,7 @@
     .box{
         transition: linear 0.5s;
         display: grid;
-        grid-template-columns: 1fr 12fr 1fr;
+        grid-template-columns: 2.5fr 12fr 1fr;
         gap: 1rem;
         min-height: var(--box-min-height);
         box-sizing: border-box;
@@ -147,10 +160,22 @@
         position: relative;
         justify-content: center;
         align-items: normal;
-        padding: 1.5rem 1rem;
+        padding: 1.25rem 0.8rem;
         background-color: var(--blue);
         color: white;
         font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 720px){
+        .box{
+            min-height: auto !important;
+            grid-template-columns: 1.5fr 12fr 1fr !important;
+            gap: 0.5rem !important;
+        }
+
+        .box-content{
+            margin-bottom: 0 !important;
+        }
     }
 
     .box:hover{
@@ -158,11 +183,14 @@
         color: var(--orange);
     }
 
-    :global(.expended){
+    :global(.expended ){
         background-color: white !important;
         color: var(--blue) !important;
         border: 4px solid var(--orange) !important;
+    }
 
+    :global(.expended > .logo > .box-logo){
+        filter:  invert(60%) sepia(11%) saturate(1646%) hue-rotate(169deg) brightness(92%) contrast(97%) !important;
     }
 
     .box > .expender{
@@ -190,10 +218,12 @@
     }
 
     
-    .logo{
-        font-size: 1.7rem;
-        display: flex;
-        justify-content: center;
-        color: var(--blue);
+    .box-logo{
+        width: 100%;
+        height: auto;
+        filter: invert(1);
     }
+
+
+
 </style>

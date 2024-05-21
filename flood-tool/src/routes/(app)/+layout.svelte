@@ -34,10 +34,33 @@
 
 <style>
 
+    html,body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: var(--blue);
+    }
+
+    footer{
+        height: 12rem;
+        border-top: 1px solid var(--text-color);
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        max-width: var(--site-width);
+        margin: 0 auto 3rem auto;
+    }
+
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0 1rem 0;
+    }
+
     .logos{
         flex-direction: row !important;
         gap:2rem;
-        /* align-items: baseline !important; */
     }
 
     .inst-logos{
@@ -60,37 +83,70 @@
         background-color: var(--text-color);
         border-radius: 50%;
     }
+
     .row-1{
         display: flex;
         width: 100%;
         justify-content: space-between;
         align-items: center;
-        font-size: 2.5rem;
+        font-size: 1.7rem;
         font-weight: bold;
     }
 
-    .footer-content{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem 0 1rem 0;
-    }
 
-    footer{
-        height: 12rem;
-        border-top: 1px solid var(--text-color);
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        max-width: var(--site-width);
-        margin: 0 auto 3rem auto;
-    }
-
+    /* if screen larger than 960 */
     main{
-        width: var(--site-width);
-        margin: 6rem auto 6rem auto;
-        display: flex;
-        
+        margin: 6rem auto;
+        display: flex;    
+    }
+
+    @media screen and (min-width: 1200px){
+        main{
+            width: var(--site-width);            
+        }
+    }
+
+    /* if screen is smaler or equal to */
+    @media screen and (max-width: 1200px){
+        main{
+            width: 100% !important;
+        }
+
+        footer{
+            margin-left: 2.5rem;
+            margin-right: 2.5rem;
+            grid-template-columns: 2fr 0.5fr 1fr;
+        }
+    }
+    
+    @media screen and (max-width: 720px){
+        main{
+            margin: 3rem auto;
+        }
+    }
+
+    @media screen and (max-width: 480px){
+        footer{
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            flex-direction: column-reverse;
+            gap: 0.1rem;
+            padding-top: 1rem;
+        }
+
+        .footer-content{
+            padding: 0.5rem;
+        }
+
+        .inst-logos{
+            width: 40%;
+            height: auto;
+        }
+
+        .blank{
+            display: none;
+        }
     }
 
 </style>
