@@ -1,6 +1,6 @@
 <script>
     export let data;
-
+    console.log(data);
     let data_simple = data.props.prep.map(prep => prep.fields);
     data_simple.sort((a, b) => a.order - b.order);
 
@@ -93,9 +93,11 @@
         color: var(--orange);
     }
 
-    .box:hover{
-        border-color: var(--orange) ;
-        color: var(--orange);
+    /* if screen is smaller then 1200 */
+    @media screen and (max-width: 1200px){
+        section{
+            margin: 0 4rem;
+        }
     }
 
 

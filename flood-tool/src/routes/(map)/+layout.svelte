@@ -20,7 +20,7 @@
             link: '../floodwatch'
         },
         {
-            logo: '../assets/icons/FN_FW__prepare_icon.svg',
+            logo: '../assets/icons/FN_FW__participate_icon.svg',
             name: 'Participate',
             link: '../participate'
         },
@@ -35,7 +35,7 @@
             link: '../prepare'
         },
         {
-            logo: '../assets/icons/FN_FW__local_reports.svg',
+            logo: '../assets/icons/FN_FW_home_icon.svg',
             name: 'Home',
             link: '../'
         } 
@@ -149,7 +149,8 @@
             background-color: var(--blue);
             box-sizing: border-box;
             border: solid 4px var(--orange);
-            border-radius: 35px;
+            border-radius: 15px;
+            padding: 0.5rem 0.5rem;
         }
 
         .shrink-nav{
@@ -183,7 +184,7 @@
             flex-direction: column;
             height: 100%;
             justify-content: space-evenly;
-            gap:0.25rem;
+            gap:0.8rem;
             height: auto;
             padding: 0rem 0rem 1rem 0rem;
         }

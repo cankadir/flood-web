@@ -1,11 +1,7 @@
 <script>
 
-    import SvelteMarkdown from 'svelte-markdown'
-
     export let button;
-    // import { page } from '$app/stores';
-    // let preparedness = $page.data.props.preparedness;
-    
+
     function assign_button( is_expends){
         if(is_expends){
             return "&#43;"; // Plus Sign
@@ -71,7 +67,9 @@
             {#if Object.keys(button).includes("LongContent")}
                 <!-- Link the the site -->
                 <div class="titlelink">
-                    <div>&#10142;</div>
+                    
+                    <img src="/assets/icons/arrow_black.svg" alt="" class="arrow">
+                    
                     <a style="color:var(--blue);cursor:pointer;" href="../floodnet" target="_blank">{button.LongContent.Title}</a>
                 </div>
                 
@@ -90,11 +88,22 @@
     </div>
 
 <style>
+
+    .arrow{
+        width: 2.5rem;
+        height: auto;
+        filter: invert(85%) sepia(48%) saturate(6687%) hue-rotate(351deg) brightness(98%) contrast(102%);
+    }
+
+    .titlelink:hover > .arrow{
+        filter: invert(1);
+    }
+
     .titlelink{
         display: flex;
         align-items: center;
         margin: 0.5rem 0rem;
-        padding-left: 0.5rem;
+        padding-left: 0.75rem;
         font-size: 1.5rem;
         font-weight: bold;
         gap: 1rem;
@@ -115,7 +124,6 @@
     }
 
     img{
-        margin-top: 2rem;
         width:100%;
         height: auto;
     }
@@ -131,6 +139,10 @@
 
     .box-content > p{
         margin: 0.5rem 0;
+    }
+
+    .long-image{
+        margin-top: 2rem;
     }
 
     h4{
@@ -189,10 +201,6 @@
         border: 4px solid var(--orange) !important;
     }
 
-    :global(.expended > .logo > .box-logo){
-        filter:  invert(60%) sepia(11%) saturate(1646%) hue-rotate(169deg) brightness(92%) contrast(97%) !important;
-    }
-
     .box > .expender{
         position: absolute;
         top: 10px;
@@ -216,7 +224,6 @@
         background-color: white !important;
         color: var(--blue) !important;
     }
-
     
     .box-logo{
         width: 100%;
@@ -224,6 +231,9 @@
         filter: invert(1);
     }
 
+    :global(.expended > .logo > .box-logo){
+        filter:  invert(60%) sepia(11%) saturate(1646%) hue-rotate(169deg) brightness(92%) contrast(97%) !important;
+    }
 
 
 </style>
