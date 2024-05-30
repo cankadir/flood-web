@@ -1,0 +1,32 @@
+
+:root{
+    --site-width: 1200px;
+    --text-color: white;
+    --blue: #508BC4;
+    --orange: #FD8F0F;
+    --light-orange: #FFC572;
+    --grey: #333;
+    --white: white;
+    --box-min-height: 200px;
+    --box-max-height: 700px;
+    --box-gap: 10px;
+
+    color: var(--text-color);
+    font-size: 11pt;
+
+}
+
+a{
+    color: var(--orange);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+html,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--blue);
+    font-family: "Source Sans 3", sans-serif;
+
+}
