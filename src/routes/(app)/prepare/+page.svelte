@@ -21,8 +21,8 @@
 <section>
 
     <div class="title">
-        <div class="logo" style="min-width:70px;height:auto;filter:invert(1)">
-            <img src=".\assets\icons\FN_FW__prepare_icon.svg" alt="prepare logo" width="100%" height="100%" />
+        <div class="logo" style="width:70px;height:auto;filter:invert(1)">
+            <img src=".\assets\icons\FN_FW_prepare_icon.svg" alt="prepare logo" width="100%" height="100%" />
         </div>
         <div class="title-info">
             <h1>Prepare</h1>
@@ -82,7 +82,7 @@
         flex-direction: row;
         gap: 1rem;
         margin-bottom: 4rem;
-        align-items: center;
+        align-items: flex-start;
     }
 
     .title-info > p{
@@ -100,6 +100,7 @@
         font-size: 3rem;
         margin: 0;
         color: var(--light-orange);
+        line-height: 3rem;
     }
 
     h2{
@@ -137,6 +138,10 @@
     .box-content > p {
         margin: 0.25rem;
         padding: 0;
+    }
+
+    section{
+        max-width: var(--site-width);
     }
 
     /* if screen is smaller then 1200 */

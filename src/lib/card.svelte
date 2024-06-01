@@ -30,7 +30,7 @@
 
 </script>
 
-<div class="box" id="{button.Title.toLowerCase().replaceAll(" ","-")}">
+<div class="box" id="{button.Title.toLowerCase().replaceAll(" ","-")}" >
     <div class="logo">
         <img src="{button.logo}" alt="item icon" class="box-logo" />
     </div>
@@ -61,7 +61,7 @@
 
     {#if button.expends}
         <button class="expender" on:click={ (e) => handleClick(e) }>
-            <img src="./assets/icons/UI_icon_open.svg" alt="" class="expends-button" width="100%" height=100% style="transform:rotate({rotation}deg)">
+            <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" class="expends-button" width="100%" height=100% style="transform:rotate({rotation}deg)">
         </button>
 
     {:else}
@@ -134,10 +134,6 @@
 
     .long-image{
         margin-top: 2rem;
-    }
-
-    h4{
-        margin: 3rem 0 0 0;
     }
     
     h3{

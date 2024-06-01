@@ -10,17 +10,17 @@
 
     const layoutItems = [
         {
-            logo: '../assets/icons/FN_FW__sensor_icon.svg',
+            logo: '../assets/icons/FN_FW_sensor_icon.svg',
             name: 'Flood Sensor Data',
             link: '../floodnet'
         },
         {
-            logo: '../assets/icons/FN_FW__Observation_icon.svg',
+            logo: '../assets/icons/FN_FW_observation_icon.svg',
             name: 'Flood Observations',
             link: '../floodwatch'
         },
         {
-            logo: '../assets/icons/FN_FW__participate_icon.svg',
+            logo: '../assets/icons/FN_FW_participate_icon.svg',
             name: 'Participate',
             link: '../participate'
         },
@@ -30,7 +30,7 @@
             link: '../local-reports'
         },
         {
-            logo: '../assets/icons/FN_FW__prepare_icon.svg',
+            logo: '../assets/icons/FN_FW_prepare_icon.svg',
             name: 'Prepare',
             link: '../prepare'
         },
@@ -72,11 +72,11 @@
     <div class="floating-nav">
         
         <div class="nav-title">
+            <!-- Title bar -->
             <h3>{pageItems[0]['name'].toUpperCase()}</h3>
+            <!-- Close Open -->
             <button class="expender" on:click={(e)=>handleClick(e)}>
-                <!-- <div class="shrink-nav">&#8722;</div> -->
-                <img class="shrink-nav" src="./assets/icons/UI_icon_open.svg" alt="open close" style="transform:rotate({rotation}deg);">
-
+                <img class="shrink-nav" src="./assets/icons/FN_FW_UI_icon_open.svg" alt="expend nav bar" style="transform:rotate({rotation}deg);">
             </button>
         </div>
         
@@ -146,7 +146,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+            padding: 0.5rem 0.5rem 0.5rem 0.5rem;
             box-sizing: border-box;
         }
 
@@ -193,7 +193,7 @@
             justify-content: space-evenly;
             gap:0.8rem;
             height: auto;
-            padding: 0rem 0rem 1rem 0rem;
+            padding: 0 0 0.5rem 0;
         }
 
         .link-1{
@@ -203,7 +203,7 @@
             font-size: 1rem;
             color: var(--white);
             font-weight: bold;
-            padding: 0 2rem
+            padding: 0 0.5rem
         }
 
         .link-1:hover {

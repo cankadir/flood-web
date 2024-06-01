@@ -152,7 +152,7 @@
             <img src="{getImage(active_polygon)}" alt="Report" class="report-viz" style="border:#333 solid 1px" /> 
             
             <button class="report-close" on:click={() => showModal = false}>
-                <img src="./assets/icons/UI_icon_close.svg" alt="Close modal" width="100%" height="100%">
+                <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="Close modal" width="100%" height="100%" style="transform:rotate(45deg)">
             </button>
         </div>    
     </div>
@@ -163,7 +163,7 @@
     <div class="panel">
         <div class="content">
             <div class="map-title" style="padding: 0 {pad}rem;">
-                <img src="./assets/icons/FN_FW__local_reports.svg" alt="report logo" width="70px" height='auto' style="filter:invert(1);">
+                <img src="./assets/icons/FN_FW_report_icon.svg" alt="report logo" width="70px" height='auto' style="filter:invert(1);">
                 <h1 style="font-size:1.75rem;margin:0 0 1.5rem 0">Neighborhood<br>Flood Reports</h1>
             </div>
             <h2 style='margin-top:0;margin-bottom:1rem;padding:0 {pad}rem'>Access a Local Flood Report</h2>
@@ -172,14 +172,18 @@
             <!-- Create a dropdown elements where the fields are report.fields.labels -->
             <div style="padding:0 {pad}rem;">
                 <p>View report for:</p>
-                <select>
-                    <option disabled selected>Select a neighborhood</option>
-                    {#each reports_data as label}
-                        {#if label.fields.has_report === "Y"}
-                            <option id="{label.fields.id}">{label.fields.labels}</option>
-                        {/if}
-                    {/each}
-                </select>
+
+                <div class="styled-select">
+                    <select class="custom-select">
+                        <option disabled selected>Select a neighborhood</option>
+                        {#each reports_data as label}
+                            {#if label.fields.has_report === "Y"}
+                                <option id="{label.fields.id}">{label.fields.labels}</option>
+                            {/if}
+                        {/each}
+                    </select>
+                </div>
+
             </div>
 
             
@@ -205,7 +209,7 @@
                     {#each ['pdf','img'] as reporttype}
                         <button class="download" on:click={(e) => report_download(e)} id="{reporttype}">
                             <div class="footer-button">{reporttype.toLocaleUpperCase()}</div>
-                            <img src="./assets/icons/UI_icon__download.svg" alt="" width="25px" height="25px">
+                            <img src="./assets/icons/FN_FW_UI_icon_download.svg" alt="" width="25px" height="25px">
                         </button>
                     {/each}
                 </div>
@@ -241,7 +245,6 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0,0,0,0.7);
-        /* display: none; */
         justify-content: center;
         align-items: center;
         z-index: 100000;
@@ -267,16 +270,23 @@
         margin-bottom:1rem;
     }
 
-    select{
-        color: var(--orange);
-        background-color: white;
-        border-radius: 5px;
-        border: none;
-        height: 30px;
-        font-weight: bold;
+    select {
         width:100%;
-        padding: 0 1rem;
-        font-size: 1rem;;
+        padding: 0 0 0 10px;
+        color: var(--orange);
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: white;
+        line-height: 1.25rem;
+        border: none;
+        border-radius: 5px;
+        height: 34px;
+        background: url(/assets/icons/FN_FW_UI_icon_dropdown_orange.svg) no-repeat right #ddd;
+        background-size: 1.25rem;
+        appearance:none;
+        -moz-appearance:none; /* Firefox */
+        -webkit-appearance:none; /* Safari and Chrome */
+        background-position-x: calc(100% - 10px);
     }
 
     button{
@@ -317,27 +327,33 @@
 
     .panel{
         position: absolute;
-        min-width: 360px;
+        min-width: 400px;
         max-width: 600px;
+        max-height: 100vh;
         width: 30%;
         height: auto;
         padding: 1rem;
-        overflow-y: auto;
+        overflow-y: hidden;
         display: flex;
         top:0;
         left:0;
         background: transparent;
         box-sizing: border-box;
+
     }
 
     .panel > .content {
         width:100%;
+        overflow-y: auto;
         background: var(--blue);
         display: flex;
         flex-direction: column;
         z-index: 1000;
         border-radius: 10px;
         padding: 2rem 0;
+        border-bottom: 0.5rem solid var(--blue);
+        border-top: 0.5rem solid var(--blue);
+        box-sizing: border-box;
     }
 
     .reports-container {
@@ -363,7 +379,7 @@
     }
 
     .info > p {
-        margin: 1.5rem 0;
+        margin: 1rem 0;
         padding: 0;
         font-size: 1.2rem;
     }
@@ -372,6 +388,25 @@
         margin: 1.5rem 0;
         background-color: var(--orange);
         position: relative;
+    }
+
+    /* styleing the scrollbar */
+    .content {
+        scrollbar-width: thin;
+        scrollbar-color: #ccc transparent;
+    }
+
+    .content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .content::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .content::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 3px;
     }
 
 </style>

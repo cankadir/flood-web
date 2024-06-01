@@ -32,7 +32,9 @@
 		</i:aipgfRef>
 	</foreignObject>
 	<g i:extraneous="self">
-		<path id="Path_1876" class="st7" d="M5.8,23.9L26.9,3.7L48.4,24h-4.5v26.3h-9.6L34.1,34H20.2v16.3H9.8V23.9H5.8z"/>
+		<circle class="st10" cx="27" cy="26.8" r="3.9"/>
+		<path class="st1" d="M27,38.9c-6.8,0-12.2-5.4-12.2-12.2S20.3,14.6,27,14.6S39.2,20,39.2,26.8S33.8,38.9,27,38.9z"/>
+		<path class="st1" d="M27,47C15.9,47,6.8,38,6.8,26.8S15.9,6.5,27,6.5s20.3,9,20.3,20.3S38.3,47,27,47z"/>
 	</g>
 </switch>
 <i:aipgf  id="adobe_illustrator_pgf" i:pgfEncoding="zstd/base64" i:pgfVersion="24">

@@ -8,7 +8,7 @@
         {
             Title: 'Flood Sensor data', 
             Norder:1 , 
-            logo: '/assets/icons/FN_FW__sensor_icon.svg', 
+            logo: '/assets/icons/FN_FW_sensor_icon.svg', 
             expends:true, link:"../floodnet", 
             ShortContent: 'View real-time and historic flood depth data from the FloodNet NYC sensor network', 
             LongContent: {
@@ -21,7 +21,7 @@
         {
             Title: 'Participate', 
             Norder:3 , 
-            logo: '/assets/icons/FN_FW__report_icon.svg', 
+            logo: '/assets/icons/FN_FW_participate_icon.svg', 
             expends:false, link:"../participate", 
             ShortContent: 'Share photos and details about flooding you see with MyCoast NY'
         },
@@ -35,19 +35,19 @@
         {
             Title: 'Flood Observations', 
             Norder:4 , 
-            logo: '/assets/icons/FN_FW__Observation_icon.svg', 
+            logo: '/assets/icons/FN_FW_observation_icon.svg', 
             expends:true, 
             ShortContent: 'See photo documentation of flooding in New York and contribute your own photos', 
             LongContent: {
                 Title:"Flood Watch NYC", 
                 Link:"../floodwatch", 
-                image:'FloodNet-Dashboard.png', 
+                image:'MyCoast_SS.png', 
                 Content:"Citizen scientists with the NYC Community Flood Watch Project have been contributing to a data archive of flood photos since 2018. Photos are integrated with environmental information such as tide level and recent rainfall through the MyCoast NY app. View this data and add your own photo reports to contribute to understanding of how flooding is changing in NYC."}
         },
         {
             Title: 'Prepare', 
             Norder:3 , 
-            logo: '/assets/icons/FN_FW__prepare_icon.svg', 
+            logo: '/assets/icons/FN_FW_prepare_icon.svg', 
             expends:false, link:"/prepare", 
             ShortContent: 'Flood Resources & Flood Risk information'
         }
@@ -73,7 +73,6 @@
                 <h2>Learn about street-level flooding where it has been observed and what it looks like</h2>
             {/if}
         </div>
-
         
         {#if screenWidth > pageBreak }
         <div class="flood-buttons-grid" >

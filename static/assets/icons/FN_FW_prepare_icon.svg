@@ -32,7 +32,12 @@
 		</i:aipgfRef>
 	</foreignObject>
 	<g i:extraneous="self">
-		<path id="Path_1876" class="st7" d="M5.8,23.9L26.9,3.7L48.4,24h-4.5v26.3h-9.6L34.1,34H20.2v16.3H9.8V23.9H5.8z"/>
+		<g>
+			<polyline class="st7" points="38.7,21.1 38.7,45.8 34.9,45.8 34.9,49.8 4.8,49.8 4.8,4.2 38.7,4.2 38.7,14.4 			"/>
+			<path class="st7" d="M51.6,10.9L26.5,30.4l-4.4,0.1l1.2-4.1L48.4,6.9c0,0,1.5,0,2.4,1.4C52,9.5,51.6,10.9,51.6,10.9z"/>
+			<polygon class="st9" points="23.4,26.4 26.6,30.4 22.1,30.5 			"/>
+			<polygon class="st9" points="34.9,49.8 34.9,45.8 38.7,45.8 			"/>
+		</g>
 	</g>
 </switch>
 <i:aipgf  id="adobe_illustrator_pgf" i:pgfEncoding="zstd/base64" i:pgfVersion="24">

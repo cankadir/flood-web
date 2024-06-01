@@ -10,10 +10,8 @@
     --box-min-height: 200px;
     --box-max-height: 700px;
     --box-gap: 10px;
-
     color: var(--text-color);
     font-size: 11pt;
-
 }
 
 a{
@@ -22,11 +20,34 @@ a{
     cursor: pointer;
 }
 
+@font-face {
+    font-family: "Source Sans 3";
+    src: url("../assets/fonts/SourceSans3-VariableFont_wght.ttf") format("truetype");
+}
+
 html,body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: var(--blue);
     font-family: "Source Sans 3", sans-serif;
+    height: 100%;
+}
 
+/* stylize scroll bar at html element */
+html::-webkit-scrollbar {
+    width: 7px;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: var(--white);
 }

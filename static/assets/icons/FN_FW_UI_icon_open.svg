@@ -11,8 +11,8 @@
 	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
 ]>
 <svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 54 54"
-	 style="enable-background:new 0 0 54 54;" xml:space="preserve">
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30.6 30.6"
+	 style="enable-background:new 0 0 30.6 30.6;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#231F20;stroke:#000000;stroke-miterlimit:10;}
 	.st1{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}
@@ -32,7 +32,10 @@
 		</i:aipgfRef>
 	</foreignObject>
 	<g i:extraneous="self">
-		<path id="Path_1876" class="st7" d="M5.8,23.9L26.9,3.7L48.4,24h-4.5v26.3h-9.6L34.1,34H20.2v16.3H9.8V23.9H5.8z"/>
+		<g>
+			<line id="Line_115_00000108293616263422977820000003009351209129021372_" class="st3" x1="15.1" y1="1.8" x2="15.1" y2="27.8"/>
+			<line id="Line_116_00000168112740773497730990000012519285669505002394_" class="st3" x1="28.1" y1="14.8" x2="2.1" y2="14.8"/>
+		</g>
 	</g>
 </switch>
 <i:aipgf  id="adobe_illustrator_pgf" i:pgfEncoding="zstd/base64" i:pgfVersion="24">
