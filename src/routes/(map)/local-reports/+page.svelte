@@ -147,7 +147,7 @@
 
 {#if showModal}
     <div class="report-modal" >
-        <button on:click={()=>showModal=false} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;"></button>
+        <button on:click={()=>showModal=false} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;" aria-label="close modal"></button>
         <div class="report-display">
             <img src="{getImage(active_polygon)}" alt="Report" class="report-viz" style="border:#333 solid 1px" /> 
             
@@ -190,7 +190,7 @@
             {#if active_polygon}
                 <div class="report-smallpic" style="padding:1rem {pad}rem">
                     <!-- create a transparent button that covers the full div -->
-                    <button on:click={()=>showModal=true} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;"></button>
+                    <button on:click={()=>showModal=true} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;" aria-label="View report larger in a modal"></button>
                     <h3 style="margin:0.5rem;">{reports_data.find(report => report.fields.id === active_polygon).fields.labels}</h3>
                     <p>Click on the image below to view the report larger in the browser</p>
                     <img src="{getImage(active_polygon)}" alt="Report" class="report-viz" />        
@@ -207,7 +207,7 @@
                     <div class="footer-button">Download </div>
                     
                     {#each ['pdf','img'] as reporttype}
-                        <button class="download" on:click={(e) => report_download(e)} id="{reporttype}">
+                        <button class="download" on:click={(e) => report_download(e)} id="{reporttype}" aria-label="download the report for {reports_data.find(report => report.fields.id === active_polygon).fields.labels}">
                             <div class="footer-button">{reporttype.toLocaleUpperCase()}</div>
                             <img src="./assets/icons/FN_FW_UI_icon_download.svg" alt="" width="25px" height="25px">
                         </button>
@@ -218,7 +218,7 @@
     </div>
 
     <!-- Leaflet Map is here -->
-    <div class="map" bind:this={mapElement}></div>
+    <div class="map" bind:this={mapElement} aria-label="Interactive map showing regions with reports. Use the dropdown menu to access the same report."></div>
 </div>
 
 

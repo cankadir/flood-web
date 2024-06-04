@@ -51,7 +51,7 @@
             <!-- Link the the site -->
             <div class="titlelink">
                 <img src="./assets/icons/arrow_black.svg" alt="" class="arrow">
-                <a style="color:var(--blue);cursor:pointer;" href={button.LongContent.Link} target="_blank">{button.LongContent.Title}</a>
+                <a style="color:var(--blue);cursor:pointer;" href={button.LongContent.Link} target="_blank" aria-label="go to project site for {button.Title}">{button.LongContent.Title}</a>
             </div>
             
             <p class="long-content">{button.LongContent.Content}</p>
@@ -61,11 +61,11 @@
 
     {#if button.expends}
         <button class="expender" on:click={ (e) => handleClick(e) }>
-            <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" class="expends-button" width="100%" height=100% style="transform:rotate({rotation}deg)">
+            <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" class="expends-button" width="100%" height=100% style="transform:rotate({rotation}deg)" aria-label="expend the card to get more information">
         </button>
 
     {:else}
-        <a href="{button.link}" class="expender" target="_blank">
+        <a href="{button.link}" class="expender" target="_blank" aria-label="go to page {button.Title}">
             <img src="./assets/icons/UI_icon__arrow.svg" alt="" class="expends-button" width="100%" height=100%>
         </a>
     {/if}

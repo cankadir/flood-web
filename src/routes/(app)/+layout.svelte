@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+    <title>NYC Flood Data</title>
 </svelte:head>
 
 
@@ -21,7 +23,7 @@
 
     <nav>
         <div class="title">
-            <a href="../" class="home">
+            <a href="../" class="home" aria-label="go back landing page">
                 <h1>NYC Flood Data</h1>
             </a>
             {#if screenWidth > pageBreak }

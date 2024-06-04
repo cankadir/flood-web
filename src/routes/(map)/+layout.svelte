@@ -84,20 +84,20 @@
         <div class="nav-content">
             {#each filteredItems as item}
 
-            {#if screenwidth > 960}
-                <div class="link-1">
-                    <a class="nav-buttons" href="{item.link}" target="_blank">
-                        <img class="nav-logo" src={item.logo} alt="logo" width="30" height="30">
-                        <span class='nav-text'>{item.name}</span>
-                    </a>
-                </div>
-            {:else}
-                <div class="link-1">
-                    <a class="nav-buttons" href="{item.link}" target="_blank">
-                        <img class="nav-logo" src={item.logo} alt="logo" width="25" height="25">
-                    </a>
-                </div>
-            {/if}
+                {#if screenwidth > 960}
+                    <div class="link-1">
+                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="go back to {item.name} page">
+                            <img class="nav-logo" src={item.logo} alt="{item.name} logo" width="30" height="30">
+                            <span class='nav-text'>{item.name}</span>
+                        </a>
+                    </div>
+                {:else}
+                    <div class="link-1">
+                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="go back to {item.name} page">
+                            <img class="nav-logo" src={item.logo} alt="{item.name} logo" width="25" height="25">
+                        </a>
+                    </div>
+                {/if}
 
             {/each}
         </div>

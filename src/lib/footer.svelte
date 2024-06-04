@@ -10,8 +10,8 @@
 <footer>
     <div class="footer-content info">
         <div class="footer-row row-1">
-            <div class="item-1"><a href="../about" style="color:var(--white)">About</a></div>
-            <div class="item-2"><a href="../contact" style="color:var(--white)">Contact</a></div>
+            <div class="item-1"><a href="../about" style="color:var(--white)" aria-label="go to about page">About</a></div>
+            <div class="item-2"><a href="../contact" style="color:var(--white)" aria-label="go to contact us page">Contact</a></div>
             <div class="item-3">
                 {#each logos as logo}
                     <a id="{logo}" class='social-media' href="{logo.link}" aria-label="{logo.sm}">
