@@ -14,7 +14,7 @@
             <div class="item-2"><a href="../contact" style="color:var(--white)">Contact</a></div>
             <div class="item-3">
                 {#each logos as logo}
-                    <a id="{logo}" class='social-media' href="{logo.link}" alt="{logo.sm}">
+                    <a id="{logo}" class='social-media' href="{logo.link}" aria-label="{logo.sm}">
                         <div class="logo">
                             <img src="{logo.icon}" alt="{logo.sm}">
                         </div>
@@ -44,6 +44,7 @@
         grid-template-columns: 2fr 1fr 1fr;
         max-width: var(--site-width);
         margin: 0 auto 3rem auto;
+
     }
 
     .footer-content{
