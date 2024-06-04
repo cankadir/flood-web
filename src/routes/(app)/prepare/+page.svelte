@@ -12,7 +12,7 @@
     }, Object.create(null));
 
     let screenWidth;
-    let item_width = 10
+    let item_width = 13;
     $: item_count = Math.floor(screenWidth / item_width);
     $: count_array = Array.from({ length: item_count }, (_, i) => i);
 
@@ -34,11 +34,15 @@
     {#each Object.keys(data_grouped) as key}
 
         <!-- Make dotted line -->
+        
         <div class="line-container" bind:clientWidth={screenWidth}>
-            {#each count_array as index}
-                <hr class="line" >    
-            {/each}
+            {#key screenWidth}
+                {#each count_array as index}
+                    <hr class="line" >    
+                {/each}
+            {/key}
         </div>
+
 
         <div class="prep-item">
             <h2>{key}</h2>
@@ -66,7 +70,9 @@
         width:100%;
         display: flex;
         flex-direction: row;
-        gap: 5px;
+        /* evenly space */
+        /* justify-content: space-evenly; */
+        gap:5px;
     }
 
     .line{

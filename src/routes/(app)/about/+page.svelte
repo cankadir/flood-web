@@ -4,26 +4,25 @@
     let item_width = 10
     $: item_count = Math.floor(screenWidth / item_width);
     $: count_array = Array.from({ length: item_count }, (_, i) => i);
+    console.log(count_array)
 
 </script>
 
 <section>
 
     <div class="title">
-        <!-- <div class="logo" style="width:70px;height:auto;filter:invert(1)">
-            <img src=".\assets\icons\FN_FW_prepare_icon.svg" alt="prepare logo" width="100%" height="100%" />
-        </div> -->
         <div class="title-info">
             <h1>About this project</h1>
             <p style="font-size:1.5rem">Flood Resources & Flood Risk Information</p>
         </div>
     </div>
 
-
     <div class="line-container" bind:clientWidth={screenWidth}>
-        {#each count_array as index}
-            <hr class="line" >    
-        {/each}
+        {#key screenWidth}
+            {#each count_array as index}
+                <hr class="line" >    
+            {/each}
+        {/key}
     </div>
 
     <div class="box">
@@ -35,7 +34,6 @@
             <img src="/assets/icons/FN_FW_observation_icon.svg" alt="Flood Net logo">
             <h2>About Community Flood Watch Project</h2>
         </div>
-
         <p class="box-text">The <a href="https://srijb.org/jbfloodwatch/">Community Flood Watch Project</a> is a collaboration between New York Sea Grant and the Science and Resilience Institute at Jamaica Bay that serves a growing network of residents and organizations who report local flooding, share experiences, and access resources related to flooding in NYC coastal communities. Flood Watch has two main areas of focus: (1) building a public archive of flood photos through community science and (2) carrying out programs aimed at increasing community flood resilience through collaborative research, workshops, talks, and, and the <a href="https://srijb.org/jamaica-bay-community-flood-fellowship-program/">Community Flood Fellowship series</a>.</p>
         <p class="box-text">The Flood Watch photo archive is a community science initiative that documents where flooding occurs, what it looks like, and how it is changing. Photo reports are collected using the <a href="https://mycoast.org/ny/flood-watch">MyCoast NY Flood Watch tool</a>, which links photographs and narrative information to weather data, tide gauge readings, and other environmental information. Researchers use these reports to visualize how “normal” high tides could look in the future due to sea level rise, and to improve forecasts of flooding and coastal hazards. Communities can use this shared database of images, reports and maps to communicate their neighborhood’s needs and visions to city leaders.</p>
         <p class="box-text">Flood Watch began in 2018, and it is co-led by New York Sea Grant and the Science and Resilience Institute at Jamaica Bay, and produced in collaboration with the NYC Mayor’s Office of Climate and Resiliency, Stevens Institute of Technology, NYC Office of Emergency Management, US Forest Service Urban Field Station, and valued community partners, including the New Hamilton Beach Civic Association, Broad Channel Civic Association, Meyers Emergency Management, Rockaway Initiative for Sustainability and Equity (RISE), Rockaway Beach Civic Association, City Island Rising Inc., Coney Island Beautification Project.</p>
@@ -53,20 +51,17 @@
         
         <div style="margin-left:2rem;">
             <p class="box-text">
-                    1. informing potential road closures or travel bans and alerting drivers to avoid flooded and dangerous streets;
-                    <br>2. alerting communities to the need for emergency preparedness and response;
-                    <br>3. informing city agencies of locations that are flooding in real-time to inform localized flood response;
-                    <br>4. identifying areas the most urgently in need of post-storm assistance;
-                    <br>5. validating existing flood models (stormwater model and future flood models); and
-                    <br>6. informing stormwater and tidal flooding resiliency planning.
+                1. informing potential road closures or travel bans and alerting drivers to avoid flooded and dangerous streets;
+                <br>2. alerting communities to the need for emergency preparedness and response;
+                <br>3. informing city agencies of locations that are flooding in real-time to inform localized flood response;
+                <br>4. identifying areas the most urgently in need of post-storm assistance;
+                <br>5. validating existing flood models (stormwater model and future flood models); and
+                <br>6. informing stormwater and tidal flooding resiliency planning.
             </p>
         </div>
         <p class="box-text">Our hope is that access to our openly available flood sensor data can be useful to city agencies and also to community residents, organizations, and coalitions as they work to understand how flooding impacts their neighborhood, explore how flooding is connected to other relevant community issues, and create action strategies in response to the two. Community input and engagement with this project is central to its success but, more importantly, to its ability to foster sustainable impact within the most at-risk communities.</p>
     </div>
-    
 </section>
-
-
 
 <style>
 
@@ -136,11 +131,6 @@
         font-size: 2.5rem;
         color: var(--light-orange);
         margin: 1rem 0;
-    }
-
-    h4{
-        font-size: 1.5rem;
-        margin: 0 0 0.5rem 0;
     }
 
     .box{

@@ -108,7 +108,7 @@
         }
     }
 
-    @media screen and (max-width: 480px){
+    @media screen and (max-width: 680px){
         footer{
             height: auto;
             display: flex;
@@ -123,8 +123,12 @@
         }
 
         .inst-logos{
-            width: 40%;
-            height: auto;
+            max-height: 100px;
+            width: auto;
+        }
+
+        .logos{
+            justify-content: center !important;
         }
 
         .blank{

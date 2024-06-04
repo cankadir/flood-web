@@ -20,10 +20,6 @@ a{
     cursor: pointer;
 }
 
-@font-face {
-    font-family: "Source Sans 3";
-    src: url("../assets/fonts/SourceSans3-VariableFont_wght.ttf") format("truetype");
-}
 
 html,body{
     margin: 0;

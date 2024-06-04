@@ -67,13 +67,6 @@
 <section >
     <div class="page-content" bind:clientWidth={screenWidth}>
 
-        <div class="title">
-            <h1>NYC Flood Data</h1>
-            {#if screenWidth > pageBreak }
-                <h2>Learn about street-level flooding where it has been observed and what it looks like</h2>
-            {/if}
-        </div>
-        
         {#if screenWidth > pageBreak }
         <div class="flood-buttons-grid" >
             <!-- 2 col layout -->
@@ -106,12 +99,9 @@
             </div>
         {/if}
 
-        
         <ImgGrid />
 
     </div>
-
-
 </section>
 
 
@@ -128,10 +118,6 @@
             width: 1200px;
         }
 
-        .title{
-            max-width: 66%;
-            margin-bottom: 2rem;
-        }
     }
 
     /* if screen is smaler or equal to */
@@ -140,40 +126,20 @@
             width: 100% !important;
             margin: 0 3rem !important;
         }
-
-        .title{
-            max-width: 100%;
-            margin-bottom: 1.5rem;
-        }
-
-
     }
 
     .flood-buttons-col{
-        margin: 3rem auto !important;
+        margin: 1rem auto !important;
         gap: 1rem !important;
         grid-template-columns: 1fr !important;
     }
 
     .flood-buttons-grid{
         max-width: 960px;
-        margin: 6rem auto;
+        margin: 1rem auto;
         gap: 1.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
-    }
-
-    h1{
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0;
-    }
-
-    h2{
-        font-size: 2.8rem;
-        font-weight: 300;
-        margin-bottom: 1rem;
-        margin-top: 0;
     }
 
     .col{
@@ -181,6 +147,5 @@
         flex-direction: column;
         gap: 1.5rem;
     }
-
 
 </style>

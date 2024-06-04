@@ -2,11 +2,34 @@
     import '../../style.css';
     import Footer from "../../lib/footer.svelte";
     
+    let screenWidth;
+    $: console.log(screenWidth);
 
+    const pageBreak = 720;
 
 </script>
 
-<div class="page">
+<!-- svelte head -->
+<svelte:head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+</svelte:head>
+
+
+<div class="page" bind:clientWidth={screenWidth}>
+
+    <nav>
+        <div class="title">
+            <a href="../" class="home">
+                <h1>NYC Flood Data</h1>
+            </a>
+            {#if screenWidth > pageBreak }
+                <h2>Learn about street-level flooding where it has been observed and what it looks like</h2>
+            {/if}
+        </div>
+    </nav>
+
     <main>
         <slot></slot>
     </main>
@@ -16,6 +39,58 @@
 
 
 <style>
+
+    .title > a{
+        text-decoration: none;
+        color: var(--text-color);
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .title > a :hover{
+        text-decoration: none;
+        color: var(--light-orange);
+    }
+
+    h1{
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0;
+    }
+
+    h2{
+        font-size: 2.8rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        margin-top: 0;
+    }
+
+    /* if screen is larger than 1200 */
+    @media screen and (min-width: 1200px){
+        .title{
+            max-width: 66%;
+            margin-bottom: 2rem;
+        }
+
+        nav{
+            width: var(--site-width);
+            margin: 6rem auto 2rem auto;
+        }
+    }
+
+    /* if screen is smaler or equal to */
+    @media screen and (max-width: 1200px){
+        .title{
+            max-width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        nav{
+            margin: 6rem 3rem 2rem 3rem !important;
+        }
+    }
+
+
     .page{
         display: flex;
         flex-direction: column;
@@ -24,7 +99,7 @@
 
     /* if screen larger than 960 */
     main{
-        margin: 6rem auto;
+        margin: 1rem auto;
         display: flex;
         flex-grow: 1;    
     }
