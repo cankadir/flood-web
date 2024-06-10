@@ -17,7 +17,7 @@
 
 <div class="title">
     <h3>NYC Communiy Flood Watch Project</h3>
-    <p>Recent flood documentation posted by the community members</p>
+    <p>Recent photos of flooding submitted by community members in NYC</p>
 </div>
 
 <div class="myCoast-photos" bind:clientWidth={screenWidth}>
@@ -28,7 +28,7 @@
             {#each observations as observation,i}
                 <div class="my-coast">
                     <img src={observation.properties.picUrl} alt="Coastal {i}"/>
-                    <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span><span> {observation.properties.photo_time}</span></p>
+                    <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span> <span> {observation.properties.photo_time}</span></p>
                     <p class="photo-content" style="font-style:italic">{observation.properties.comment}</p>
                 </div>
             {/each}
@@ -37,7 +37,7 @@
                 <div class="my-coast">
                     <img src={observation.properties.picUrl} alt="Coastal {i}"/>
                     <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span><span> {observation.properties.photo_time}</span></p>
-                    <p class="photo-content" style="font-style:italic">{observation.properties.comment}</p>
+                    <p class="photo-content" style="font-style:italic; margin-top:0 !important;">{observation.properties.comment}</p>
                 </div>
             {/each}
         {/if}
@@ -47,16 +47,18 @@
 
 <style>
     .title{
-        margin-top: 3rem;
+        margin-top: 4rem;
         margin-bottom: 1rem;
     }
 
     h3{
         margin: 0;
+        font-size: 1.5rem;
     }
 
     p{
         margin: 0;
+        font-size: 1.2rem;
     }
 
     .myCoast-photos {
@@ -79,10 +81,11 @@
         object-fit: cover;
         width: 100%;
         height: 200px !important;
+        margin-bottom: 0.5rem;
     }
 
     .photo-content{
-        margin-top: 0.75rem;
+        margin-top: 0.25rem;
         font-size: 0.75rem;
     }
 
@@ -93,7 +96,7 @@
         }
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: calc(720px + 6rem)) {
         .myCoast-photos {
             grid-template-columns: 1fr 1fr;
         }

@@ -1,4 +1,7 @@
 <script>
+
+    import Dottedline from "$lib/dottedline.svelte";
+
     export let data;
 
     let data_simple = data.props.prep.map(prep => prep.fields);
@@ -19,52 +22,51 @@
 </script>
 
 <section>
-
-    <div class="title">
-        <div class="logo" style="width:70px;height:auto;filter:invert(1)">
-            <img src=".\assets\icons\FN_FW_prepare_icon.svg" alt="prepare logo" width="100%" height="100%" />
-        </div>
-        <div class="title-info">
-            <h1>Prepare</h1>
-            <p style="font-size:1.5rem">Flood Resources & Flood Risk Information</p>
-        </div>
-    </div>
-
-    <!-- Generate a min title for each key, this is the first column in the list. -->
-    {#each Object.keys(data_grouped) as key}
-
-        <!-- Make dotted line -->
-        
-        <div class="line-container" bind:clientWidth={screenWidth}>
-            {#key screenWidth}
-                {#each count_array as index}
-                    <hr class="line" >    
-                {/each}
-            {/key}
-        </div>
-
-
-        <div class="prep-item">
-            <h2>{key}</h2>
-
-            <div class="resources">
-                {#each data_grouped[key] as item}
-                    <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
-                        <div class="box-content">
-                            <h4>{item.Subtitle}</h4>
-                            <a href={item.link}>{item.link}</a>
-                            <p class="box-text">{item.Content}</p>
-                        </div>
-                    </div>
-                {/each}
+    <div class="page-content">
+        <div class="title">
+            <div class="logo" style="width:70px;height:auto;filter:invert(1)">
+                <img src=".\assets\icons\FN_FW_prepare_icon.svg" alt="prepare logo" width="100%" height="100%" />
+            </div>
+            <div class="title-info">
+                <h1>Flood Resources</h1>
+                <p style="font-size:1.5rem">Learn about flood risk and preparedness</p>
             </div>
         </div>
-    {/each}
+    
+        <!-- Generate a min title for each key, this is the first column in the list. -->
+        {#each Object.keys(data_grouped) as key}
+            <!-- Make dotted line -->
+    
+            <Dottedline {screenWidth} />
+    
+    
+            <div class="prep-item">
+                <h2>{key}</h2>
+    
+                <div class="resources">
+                    {#each data_grouped[key] as item}
+                        <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
+                            <div class="box-content">
+                                <h4>{item.Subtitle}</h4>
+                                <a href={item.link}>{item.link}</a>
+                                <p class="box-text">{item.Content}</p>
+                            </div>
+                        </div>
+                    {/each}
+                </div>
+            </div>
+        {/each}
+    </div>
 </section>
 
 
 
 <style>
+
+    .page-content{
+        max-width: 960px;
+        margin: 0 auto;
+    }
 
     .line-container{
         width:100%;
@@ -142,12 +144,17 @@
     }
 
     .box-content > p {
-        margin: 0.25rem;
+        margin: 0.25rem 0;
         padding: 0;
+    }
+
+    .box-text{
+        line-height: 1.5rem;
     }
 
     section{
         max-width: var(--site-width);
+        margin: 0 auto;
     }
 
     /* if screen is smaller then 1200 */

@@ -14,7 +14,8 @@
         // If a box is allowed to expend
         if(expender){
             // toggle the expended class of the box
-            let clicked_box = e.target.parentElement.parentElement;
+            console.log(e.target.parentElement);
+            let clicked_box = e.target.parentElement;
             clicked_box.classList.toggle("expended");
 
             // toggle the hidden class of the box-content
@@ -59,22 +60,72 @@
         {/if}
     </div>
 
+    <!-- The expender button + x -->
     {#if button.expends}
         <button class="expender" on:click={ (e) => handleClick(e) }>
-            <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" class="expends-button" width="100%" height=100% style="transform:rotate({rotation}deg)" aria-label="expend the card to get more information">
+            <div class="image-position"><img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" class="expends-button" style="transform:rotate({rotation}deg)" aria-label="expend the card to get more information"></div>
         </button>
 
     {:else}
         <a href="{button.link}" class="expender" target="_blank" aria-label="go to page {button.Title}">
-            <img src="./assets/icons/UI_icon__arrow.svg" alt="" class="expends-button" width="100%" height=100%>
+            <div class="image-position"><img src="./assets/icons/UI_icon__arrow.svg" alt="" class="expends-button" ></div>
         </a>
     {/if}
 </div>
 
 <style>
 
+
+    .image-position{
+        width: 100%;
+        height: 100%;
+        /* remove from clickable */
+        pointer-events: none;
+    }
+
     .expends-button{
         filter: invert(1);
+        height: 25px;
+        width: auto;
+        top:10px;
+        right:10px;
+        position: absolute;
+    }
+
+    .box > .expender{
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        border: none;
+        color: var(--text-color);
+        background-color: transparent;
+        cursor: pointer;
+        outline: none;
+        width: 100%;
+        height: 100%;
+        padding: 0 !important
+    }
+
+    .box:hover > .expender{
+        transition: linear 0.5s;
+        color: var(--light-orange);
+    }
+
+    .box:hover > .expender > .image-position > img{
+        filter: invert(100%) sepia(94%) saturate(2937%) hue-rotate(306deg) brightness(101%) contrast(108%);
+        transition: linear 0.5s;
+    }
+    
+    :global( .expended > .expender){
+        transition: linear 0.5s;
+        background-color: transparent !important;
+        color: var(--blue) !important;
+    }
+
+    :global( .expended > .expender > .image-position > img ){
+        transition: linear 0.5s;
+        filter: invert(60%) sepia(11%) saturate(1646%) hue-rotate(169deg) brightness(92%) contrast(97%) !important;
     }
 
     .arrow{
@@ -121,7 +172,8 @@
     }
 
     .box-content{
-        user-select: none;;
+        user-select: none;
+        z-index: 10;
     }
 
     .box-content > p{
@@ -165,7 +217,7 @@
         font-size: 1.5rem;
     }
 
-    @media screen and (max-width: 720px){
+    @media screen and (max-width: calc(720px + 6rem)){
         .box{
             min-height: auto !important;
             grid-template-columns: 1.5fr 12fr 1fr !important;
@@ -186,42 +238,6 @@
         background-color: white !important;
         color: var(--blue) !important;
         border: 4px solid var(--orange) !important;
-    }
-
-    .box > .expender{
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        border: none;
-        color: var(--text-color);
-        background-color: transparent;
-        cursor: pointer;
-        outline: none;
-        width: 25px;
-        height: 25px;
-        padding: 0 !important
-    }
-
-    .box:hover > .expender{
-        transition: linear 0.5s;
-        color: var(--light-orange);
-    }
-
-    .box:hover > .expender > img{
-        filter: invert(100%) sepia(94%) saturate(2937%) hue-rotate(306deg) brightness(101%) contrast(108%);
-        transition: linear 0.5s;
-    }
-    
-    :global( .expended > .expender){
-        transition: linear 0.5s;
-        background-color: transparent !important;
-        color: var(--blue) !important;
-    }
-
-    :global( .expended > .expender > img ){
-        transition: linear 0.5s;
-        filter: invert(60%) sepia(11%) saturate(1646%) hue-rotate(169deg) brightness(92%) contrast(97%) !important;
     }
 
     .box-logo{

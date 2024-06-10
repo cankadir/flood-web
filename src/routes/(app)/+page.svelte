@@ -6,8 +6,9 @@
 
     let buttonsContent = [
         {
-            Title: 'Flood Sensor data', 
+            Title: 'Flood Sensor Data', 
             Norder:1 , 
+            Sorder: 4,
             logo: '/assets/icons/FN_FW_sensor_icon.svg', 
             expends:true, link:"../floodnet", 
             ShortContent: 'View real-time and historic flood depth data from the FloodNet NYC sensor network', 
@@ -21,35 +22,39 @@
         {
             Title: 'Participate', 
             Norder:3 , 
+            Sorder: 2,
             logo: '/assets/icons/FN_FW_participate_icon.svg', 
             expends:false, link:"../participate", 
-            ShortContent: 'Share photos and details about flooding you see with MyCoast NY'
+            ShortContent: 'Document flooding by submitting photographs to MyCoast NY'
         },
         {
             Title: 'Neighborhood Flood Reports', 
             Norder:5 , 
+            Sorder: 1,
             logo: '/assets/icons/FN_FW__local_reports.svg', 
             expends:false, link:"/local-reports", 
-            ShortContent: 'Access regularly updated reports about recent flooding in your neighborhood'},
+            ShortContent: 'Download reports about flooding in your neighborhood, updated twice per year'},
 
         {
             Title: 'Flood Observations', 
             Norder:4 , 
+            Sorder: 3,
             logo: '/assets/icons/FN_FW_observation_icon.svg', 
             expends:true, 
-            ShortContent: 'See photo documentation of flooding in New York and contribute your own photos', 
+            ShortContent: 'See photo documentation of flooding in NYC and submit your own', 
             LongContent: {
-                Title:"Flood Watch NYC", 
+                Title:"MyCoast NY", 
                 Link:"../floodwatch", 
                 image:'MyCoast_SS.png', 
                 Content:"Citizen scientists with the NYC Community Flood Watch Project have been contributing to a data archive of flood photos since 2018. Photos are integrated with environmental information such as tide level and recent rainfall through the MyCoast NY app. View this data and add your own photo reports to contribute to understanding of how flooding is changing in NYC."}
         },
         {
-            Title: 'Prepare', 
+            Title: 'Flood Resources', 
             Norder:3 , 
+            Sorder: 5,
             logo: '/assets/icons/FN_FW_prepare_icon.svg', 
             expends:false, link:"/prepare", 
-            ShortContent: 'Flood Resources & Flood Risk information'
+            ShortContent: 'Learn about flood risk and preparedness'
         }
     ];
 
@@ -79,7 +84,6 @@
             </div>
 
             <div class="col col-2">
-
                 {#each buttonsContent as button,i}
                     {#if i > 2 }
                         <Card {button} />
@@ -92,7 +96,8 @@
             <div class="flood-buttons-col" >
                 <!-- 1 col layout, boxes reordered -->
                 <div class="col">
-                    {#each [...buttonsContent].sort((a, b) => a.Norder - b.Norder) as button}
+                    <!-- Order by SOrder when the screen is small -->
+                    {#each [...buttonsContent].sort((a, b) => a.Sorder - b.Sorder) as button}
                         <Card {button} />
                     {/each}
                 </div>

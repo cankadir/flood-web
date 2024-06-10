@@ -27,7 +27,7 @@
                 <h1>NYC Flood Data</h1>
             </a>
             {#if screenWidth > pageBreak }
-                <h2>Learn about street-level flooding where it has been observed and what it looks like</h2>
+                <h2>Learn about street-level flooding, where it has been observed, and what it looks like</h2>
             {/if}
         </div>
     </nav>
@@ -65,6 +65,7 @@
         font-weight: 300;
         margin-bottom: 1rem;
         margin-top: 0;
+        line-height: 1.25;
     }
 
     /* if screen is larger than 1200 */
@@ -72,6 +73,7 @@
         .title{
             max-width: 66%;
             margin-bottom: 2rem;
+            margin-left: 1.5rem;
         }
 
         nav{
@@ -84,7 +86,8 @@
     @media screen and (max-width: 1200px){
         .title{
             max-width: 100%;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            margin-left: 0;
         }
 
         nav{
@@ -102,6 +105,7 @@
     /* if screen larger than 960 */
     main{
         margin: 1rem auto;
+        margin-bottom: 3rem;
         display: flex;
         flex-grow: 1;    
     }
@@ -124,7 +128,5 @@
             margin: 3rem auto;
         }
     }
-
-
 
 </style>

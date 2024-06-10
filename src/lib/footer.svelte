@@ -1,9 +1,9 @@
 <script>
     let logos = [
         {'sm':'FloodNet Instagram', 'link':'https://www.instagram.com/floodnetnyc/', 'icon':'/assets/media_icons/instagram.svg'},
-        {'sm':'New York Sea Grant Instagram', 'link':'https://www.instagram.com/newyorkseagrant/', 'icon':'/assets/media_icons/instagram.svg'},
+        // {'sm':'New York Sea Grant Instagram', 'link':'https://www.instagram.com/newyorkseagrant/', 'icon':'/assets/media_icons/instagram.svg'},
         {'sm':'NYC Community Flood Watch Project FB Page', 'link':'https://www.facebook.com/groups/floodwatch ', 'icon':'/assets/media_icons/facebook.svg'},
-        {'sm':'Flood Watch Email Sign Up', 'link':'https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link', 'icon':'/assets/media_icons/facebook.svg'},
+        {'sm':'Flood Watch Email Sign Up', 'link':'https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link', 'icon':'/assets/media_icons/email.svg'},
     ];
 </script>
 
@@ -13,13 +13,16 @@
             <div class="item-1"><a href="../about" style="color:var(--white)" aria-label="go to about page">About</a></div>
             <div class="item-2"><a href="../contact" style="color:var(--white)" aria-label="go to contact us page">Contact</a></div>
             <div class="item-3">
+                
+                <!-- Social Media icons and links -->
                 {#each logos as logo}
-                    <a id="{logo}" class='social-media' href="{logo.link}" aria-label="{logo.sm}">
+                    <a id="{logo}" class='social-media' href="{logo.link}" aria-label="{logo.sm}" target="_blank">
                         <div class="logo">
                             <img src="{logo.icon}" alt="{logo.sm}">
                         </div>
                     </a>
                 {/each}
+
             </div>
         </div>
         <div class="footer-row row-2">
@@ -78,15 +81,13 @@
     }
 
     .logo{
-        width: 2rem;
+        width: auto;
         height: 2rem;
-        /* background-color: var(--text-color); */
     }
 
     .logo > img{
         width: 100%;
         height: 100%;
-        object-fit: cover;
         filter: invert(1);
     }
 
