@@ -16,7 +16,7 @@
 </script>
 
 <div class="title">
-    <h3>NYC Communiy Flood Watch Project</h3>
+    <h3>NYC Community Flood Watch Project</h3>
     <p>Recent photos of flooding submitted by community members in NYC</p>
 </div>
 

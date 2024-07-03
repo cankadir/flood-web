@@ -174,6 +174,8 @@
     .box-content{
         user-select: none;
         z-index: 10;
+        pointer-events: none;
+        cursor: pointer;
     }
 
     .box-content > p{

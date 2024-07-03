@@ -3,9 +3,18 @@
     import Footer from "../../lib/footer.svelte";
     
     let screenWidth;
-    $: console.log(screenWidth);
+    // $: console.log(screenWidth);
 
     const pageBreak = 720;
+
+    // get page url
+    import { page } from '$app/stores';
+    let pageUrl = $page.url.href;
+    pageUrl = pageUrl.split('/');
+    pageUrl = pageUrl[pageUrl.length - 1];
+
+    // if pageUrl is empty the page is a landing page
+    pageUrl = pageUrl === '' ? 'landing' : 'other';
 
 </script>
 
@@ -23,9 +32,13 @@
 
     <nav>
         <div class="title">
-            <a href="../" class="home" aria-label="go back landing page">
+            {#if pageUrl === 'landing' }
                 <h1>NYC Flood Data</h1>
-            </a>
+            {:else}
+                <a href="../" class="home" aria-label="go back landing page">
+                    <h1>NYC Flood Data</h1>
+                </a>
+            {/if}
             {#if screenWidth > pageBreak }
                 <h2>Learn about street-level flooding, where it has been observed, and what it looks like</h2>
             {/if}

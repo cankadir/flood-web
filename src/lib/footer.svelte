@@ -33,8 +33,8 @@
     <div class="footer-content blank"></div>
 
     <div class="footer-content logos">
-        <img class="inst-logos" src="./assets/FloodNet-White-01.png" alt="flood net logo">
-        <img class="inst-logos" src="./assets/SeaGrantLogo.png" alt="sea grant logo">
+        <a href="https://www.floodnet.nyc/"><img class="inst-logos" src="./assets/FloodNet-White-01.png" alt="flood net logo"></a>
+        <a href="https://seagrant.sunysb.edu/"><img class="inst-logos" src="./assets/SeaGrantLogo.png" alt="sea grant logo"></a>
     </div>
 
 </footer>

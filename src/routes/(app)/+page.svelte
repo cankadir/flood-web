@@ -55,6 +55,14 @@
             logo: '/assets/icons/FN_FW_prepare_icon.svg', 
             expends:false, link:"/prepare", 
             ShortContent: 'Learn about flood risk and preparedness'
+        },
+        {
+            Title: 'Sign Up for Alerts', 
+            Norder:6 , 
+            Sorder: 6,
+            logo: '/assets/media_icons/subscribe.svg', 
+            expends:false, link:"https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link", 
+            ShortContent: 'Sign up for our mailing list'
         }
     ];
 
@@ -63,7 +71,7 @@
 
     // watch for the screensize changes
     let screenWidth;
-    $: console.log(screenWidth);
+    // $: console.log(screenWidth);
 
     const pageBreak = 720;
 
