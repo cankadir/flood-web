@@ -22,13 +22,6 @@
         overflow-y: hidden;
     }
 
-
-    p{
-        font-size: 1.25rem;
-        color: var(--white);
-        margin: 0;
-    }
-
     /* if smaller than 1200 */
     @media screen and (max-width: 1200px){
         .page-content{

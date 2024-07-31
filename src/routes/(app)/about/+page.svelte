@@ -1,9 +1,6 @@
 <script>
-
     import Dottedline from "$lib/dottedline.svelte";
-
     let screenWidth;
-
 </script>
 
 <section>
@@ -17,7 +14,6 @@
 
             <Dottedline {screenWidth} />
 
-        
             <div class="box">
                 <p class="box-text">This website brings together multiple sources of data about flooding in NYC, including links to official information about flood risk, quantitative data about the frequency and depth of measured street-level floods, as well as photographs of flooding submitted by residents across the city. This information is intended to be a resource for communities as they educate and advocate for resources related to flood resilience. Neighborhood Flood Reports contain a summary of historical information about how often flooding occurs and what it looks like at the neighborhood level. These reports are updated multiple times per year and are designed to be easily downloaded and shared with neighbors, advocates, and decision makers.</p>
             </div>
@@ -91,11 +87,6 @@
         gap: 1rem;
         margin-bottom: 3rem;
         align-items: flex-start;
-    }
-
-    .title-info > p{
-        margin: 0.5rem 0 0 0;
-        font-size: 1.25rem;
     }
 
     .box-text > a{

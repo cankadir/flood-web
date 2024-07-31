@@ -1,13 +1,11 @@
 
 
-// import AIRTABLE_APIKEY from .env using new 
-import { PUBLIC_AIRTABLE_APIKEY, PUBLIC_MYCOAST_APIURL } from "$env/static/public"
-
 export async function load({ fetch }) {
 
     // AIRTABLE - Reports
+    let public_key = "patfoFHZpi11znkas.afefdf9daa13bb452cbd559575156e67e6d2c880da7f2c69d10ff820586dd84b"
     let report_boundaries_url = "https://api.airtable.com/v0/appvTkmJJRpz8x95D/Report%20Boundaries?filterByFormula=%7Bhas_report%7D+%3D+'Y'"
-    let Bearer = 'Bearer ' + PUBLIC_AIRTABLE_APIKEY
+    let Bearer = 'Bearer ' + public_key;
 
     const report_res = await fetch( report_boundaries_url , {
         headers: {
