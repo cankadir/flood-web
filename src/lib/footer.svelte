@@ -16,9 +16,9 @@
                 
                 <!-- Social Media icons and links -->
                 {#each logos as logo}
-                    <a id="{logo}" class='social-media' href="{logo.link}" aria-label="{logo.sm}" target="_blank">
+                    <a class='social-media' href="{logo.link}" aria-label="go to {logo.sm} (opens in a new tabs)" target="_blank">
                         <div class="logo">
-                            <img src="{logo.icon}" alt="{logo.sm}">
+                            <img src="{logo.icon}" alt="" aria-hidden="true">
                         </div>
                     </a>
                 {/each}
@@ -33,8 +33,8 @@
     <div class="footer-content blank"></div>
 
     <div class="footer-content logos">
-        <a href="https://www.floodnet.nyc/"><img class="inst-logos" src="./assets/FloodNet-White-01.png" alt="flood net logo"></a>
-        <a href="https://seagrant.sunysb.edu/"><img class="inst-logos" src="./assets/SeaGrantLogo.png" alt="sea grant logo"></a>
+        <a href="https://www.floodnet.nyc/" target="_blank" aria-label="go to Flood Net website (opens in a new tab)"><img class="inst-logos" src="./assets/FloodNet-White-01.png" alt="" aria-hidden="true"></a>
+        <a href="https://seagrant.sunysb.edu/" target="_blank" aria-label="go to Seagrant website (opens in a new tab)"><img class="inst-logos" src="./assets/SeaGrantLogo.png" alt="" aria-hidden="true"></a>
     </div>
 
 </footer>

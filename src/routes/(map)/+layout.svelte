@@ -86,15 +86,15 @@
 
                 {#if screenwidth > 960}
                     <div class="link-1">
-                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="go back to {item.name} page">
-                            <img class="nav-logo" src={item.logo} alt="{item.name} logo" width="30" height="30">
+                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="go back to {item.name} page (opens in a new tab)">
+                            <img class="nav-logo" src={item.logo} alt="" aria-hidden="true" width="30" height="30">
                             <span class='nav-text'>{item.name}</span>
                         </a>
                     </div>
                 {:else}
                     <div class="link-1">
-                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="go back to {item.name} page">
-                            <img class="nav-logo" src={item.logo} alt="{item.name} logo" width="25" height="25">
+                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="go back to {item.name} page (opens in a new tab)">
+                            <img class="nav-logo" src={item.logo} alt="" aria-hidden="true" width="25" height="25">
                         </a>
                     </div>
                 {/if}

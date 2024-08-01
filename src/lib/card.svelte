@@ -33,7 +33,7 @@
 
 <div class="box" id="{button.Title.toLowerCase().replaceAll(" ","-")}" >
     <div class="logo">
-        <img src="{button.logo}" alt="item icon" class="box-logo" />
+        <img src="{button.logo}" alt="" aria-hidden="true" class="box-logo" />
     </div>
     
     <!-- This gets replaced on click -->
@@ -51,24 +51,24 @@
         {#if Object.keys(button).includes("LongContent")}
             <!-- Link the the site -->
             <div class="titlelink">
-                <img src="./assets/icons/arrow_black.svg" alt="" class="arrow">
-                <a style="color:var(--blue);cursor:pointer;" href={button.LongContent.Link} target="_blank" aria-label="go to project site for {button.Title}">{button.LongContent.Title}</a>
+                <img src="./assets/icons/arrow_black.svg" alt="" class="arrow" aria-hidden='true'>
+                <a style="color:var(--blue);cursor:pointer;" href={button.LongContent.Link} target="_blank" aria-label="go to project site for {button.Title} (opens a new tab)">{button.LongContent.Title}</a>
             </div>
             
             <p class="long-content">{button.LongContent.Content}</p>
-            <img class='long-image' src="./assets/{button.LongContent.image}" alt="Dashboard View">
+            <img class='long-image' src="./assets/{button.LongContent.image}" alt="Floodnet Dashboard View">
         {/if}
     </div>
 
     <!-- The expender button + x -->
     {#if button.expends}
-        <button class="expender" on:click={ (e) => handleClick(e) }>
-            <div class="image-position"><img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" class="expends-button" style="transform:rotate({rotation}deg)" aria-label="expend the card to get more information"></div>
+        <button class="expender" on:click={ (e) => handleClick(e) } aria-label="expend the card to display more information">
+            <div class="image-position"><img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden='true' class="expends-button" style="transform:rotate({rotation}deg)" ></div>
         </button>
 
     {:else}
-        <a href="{button.link}" class="expender" target="_blank" aria-label="go to page {button.Title}">
-            <div class="image-position"><img src="./assets/icons/UI_icon__arrow.svg" alt="" class="expends-button" ></div>
+        <a href="{button.link}" class="expender" target="_blank" aria-label="go to page {button.Title} (opens a new tab)">
+            <div class="image-position"><img src="./assets/icons/UI_icon__arrow.svg" alt="" aria-hidden="true" class="expends-button" ></div>
         </a>
     {/if}
 </div>

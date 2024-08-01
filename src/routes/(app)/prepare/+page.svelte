@@ -25,7 +25,7 @@
     <div class="page-content">
         <div class="title">
             <div class="logo" style="width:70px;height:auto;filter:invert(1)">
-                <img src="/assets/icons/FN_FW_prepare_icon.svg" alt="prepare logo" width="100%" height="100%" />
+                <img src="/assets/icons/FN_FW_prepare_icon.svg" alt="" aria-hidden='true' width="100%" height="100%" />
             </div>
             <div class="title-info">
                 <h1>Flood Resources</h1>
@@ -48,7 +48,7 @@
                         <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
                             <div class="box-content">
                                 <h4>{item.Subtitle}</h4>
-                                <a href={item.link}>{item.link}</a>
+                                <a href={item.link} aria-label="go to {item.Subtitle.toLowerCase()} (opens in a new tab)">{item.link}</a>
                                 <p class="box-text">{item.Content}</p>
                             </div>
                         </div>

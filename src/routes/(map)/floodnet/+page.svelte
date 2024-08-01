@@ -1,5 +1,5 @@
 <!-- iframe to https://dataviz.floodnet.nyc/ -->
-<iframe src="https://dataviz.floodnet.nyc/" width="100%" height="100%" title="flood net dashboard"></iframe>
+<iframe src="https://dataviz.floodnet.nyc/" width="100%" height="100%" title="Flood net dashboard"></iframe>
 
 
 <style>
