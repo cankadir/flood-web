@@ -75,8 +75,8 @@
             <!-- Title bar -->
             <h3>{pageItems[0]['name'].toUpperCase()}</h3>
             <!-- Close Open -->
-            <button class="expender" on:click={(e)=>handleClick(e)}>
-                <img class="shrink-nav" src="./assets/icons/FN_FW_UI_icon_open.svg" alt="expend nav bar" style="transform:rotate({rotation}deg);">
+            <button class="expender" on:click={(e)=>handleClick(e)} aria-label="Expand and Shrink the nav menu">
+                <img class="shrink-nav" src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden="true" style="transform:rotate({rotation}deg);">
             </button>
         </div>
         
