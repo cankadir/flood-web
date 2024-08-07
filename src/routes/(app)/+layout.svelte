@@ -1,19 +1,21 @@
 <script>
 
     import Footer from "$lib/footer.svelte";
-    
+    import { page } from '$app/stores';
+    import { onMount } from 'svelte';
+
     let screenWidth;
     const pageBreak = 720;
+    let pageUrl;
 
-    // get page url
-    import { page } from '$app/stores';
-    let pageUrl = $page.url.href;
-    pageUrl = pageUrl.split('/');
-    pageUrl = pageUrl[pageUrl.length - 1];
-
-    // if pageUrl is empty the page is a landing page
-    pageUrl = pageUrl === '' ? 'landing' : 'other';
-    console.log(pageUrl);
+    $: pageUrl = $page.url.href;
+    
+    onMount(() => {
+        console.log(pageUrl);
+        pageUrl = pageUrl.split('/');
+        pageUrl = pageUrl[pageUrl.length - 1];
+        pageUrl = pageUrl === '' ? 'landing' : 'other';
+    });
 
 </script>
 
@@ -28,18 +30,17 @@
 
 
 <div class="page" bind:clientWidth={screenWidth}>
-
-    <nav>
+    <nav data-sveltekit-reload>
         <div class="title">
             {#if pageUrl === 'landing' }
                 <h1>NYC Flood Data</h1>
             {:else}
-                <a href="/" class="home" aria-label="Go back landing page">
+                <a href="/" class="home" aria-label="Go back landing page" on:click={pageUrl='landing'}>
                     <h1>NYC Flood Data</h1>
                 </a>
             {/if}
             {#if screenWidth > pageBreak }
-                <h2>Learn about street-level flooding, where it has been observed, and what it looks like</h2>
+                <h2>Learn about street-level flooding in NYC, where it has been observed, and what it looks like</h2>
             {/if}
         </div>
     </nav>

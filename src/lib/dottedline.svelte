@@ -1,30 +1,13 @@
 
-
-<script>
-
-    export let screenWidth;
-
-    let item_width = 10
-    $: item_count = Math.floor(screenWidth / item_width);
-    $: count_array = Array.from({ length: item_count }, (_, i) => i);
-    console.log(count_array)
-
-</script>
-
-
-
-<div class="line-container" bind:clientWidth={screenWidth}>
-    {#key screenWidth}
-        {#each count_array as index}
-            <hr class="line" >
-        {/each}
-    {/key}
+<div class="line-container" >
+    <hr class="line" >
 </div>
 
 <style>
     
     .line-container{
         width:100%;
+        max-width: 100%;
         display: flex;
         flex-direction: row;
         gap: 5px;
@@ -35,7 +18,16 @@
         width:100%;
         margin:0;
         padding:0;
-        border: 3px solid var(--light-orange);
+        /* border: 2px dashed var(--light-orange); */
+        border: none;
+        height: 4px;
+        background: repeating-linear-gradient(
+            to right,
+            var(--light-orange),
+            var(--light-orange) 5px, /* Length of the dash */
+            transparent 5px, /* Start of the gap */
+            transparent 10px /* Length of the gap */
+        );
     }
 
 

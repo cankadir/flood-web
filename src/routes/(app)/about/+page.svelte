@@ -1,13 +1,11 @@
 <script>
 
     import Dottedline from "$lib/dottedline.svelte";
-
-    let screenWidth;
-
+    
 </script>
 
-<section>
-    <div class="page-content">
+<section >
+    <div class="page-content" >
         
             <div class="title">
                 <div class="title-info">
@@ -15,9 +13,8 @@
                 </div>
             </div>
 
-            <Dottedline {screenWidth} />
+            <Dottedline/>
 
-        
             <div class="box">
                 <p class="box-text">This website brings together multiple sources of data about flooding in NYC, including links to official information about flood risk, quantitative data about the frequency and depth of measured street-level floods, as well as photographs of flooding submitted by residents across the city. This information is intended to be a resource for communities as they educate and advocate for resources related to flood resilience. Neighborhood Flood Reports contain a summary of historical information about how often flooding occurs and what it looks like at the neighborhood level. These reports are updated multiple times per year and are designed to be easily downloaded and shared with neighbors, advocates, and decision makers.</p>
             </div>
@@ -27,12 +24,19 @@
                     <img src="/assets/icons/FN_FW_observation_icon.svg" aria-hidden="true" alt="">
                     <h2>About the NYC Community Flood Watch Project</h2>
                 </div>
-                <p class="box-text">The <a href="https://srijb.org/jbfloodwatch/">Community Flood Watch Project</a> is a collaboration between New York Sea Grant and the Science and Resilience Institute at Jamaica Bay that serves a growing network of residents and organizations who report local flooding, share experiences, and access resources related to flooding in NYC coastal communities. Flood Watch has two main areas of focus: (1) building a public archive of flood photos through community science and (2) carrying out programs aimed at increasing community flood resilience through collaborative research, workshops, talks, and, and the <a href="https://srijb.org/jamaica-bay-community-flood-fellowship-program/">Community Flood Fellowship series</a>.</p>
-                <p class="box-text">The Flood Watch photo archive is a community science initiative that documents where flooding occurs, what it looks like, and how it is changing. Photo reports are collected using the <a href="https://mycoast.org/ny/flood-watch">MyCoast NY Flood Watch tool</a>, which links photographs and narrative information to weather data, tide gauge readings, and other environmental information. Researchers use these reports to visualize how “normal” high tides could look in the future due to sea level rise, and to improve forecasts of flooding and coastal hazards. Communities can use this shared database of images, reports and maps to communicate their neighborhood’s needs and visions to city leaders.</p>
-                <p class="box-text">Flood Watch began in 2018, and it is co-led by New York Sea Grant and the Science and Resilience Institute at Jamaica Bay, and produced in collaboration with the NYC Mayor’s Office of Climate and Resiliency, Stevens Institute of Technology, NYC Office of Emergency Management, US Forest Service Urban Field Station, and valued community partners, including the New Hamilton Beach Civic Association, Broad Channel Civic Association, Meyers Emergency Management, Rockaway Initiative for Sustainability and Equity (RISE), Rockaway Beach Civic Association, City Island Rising Inc., Coney Island Beautification Project.</p>
+
+                <p class="box-text">The <a href="https://srijb.org/jbfloodwatch/">Community Flood Watch Project</a> is a collaboration between New York Sea Grant and the Science and Resilience Institute at Jamaica Bay that serves a network of residents and organizations who report local flooding, share experiences, and access resources related to flooding in NYC coastal communities. Flood Watch has two main areas of focus:</p>
+                
+                <ol type="1">
+                    <li>building a public archive of flood photos through community science and</li>
+                    <li>increasing community flood resilience through collaborative research, workshops, talks, and the Community Flood Fellowship program.</li>
+                </ol>
+
+                <p class="box-text">The Flood Watch photo archive is a community science initiative that documents where flooding occurs, what it looks like, and how it is changing. Photographs are collected using the MyCoast NY Flood Watch tool, which links photographs to real-time environmental conditions to create reports that help stakeholders like government agencies, business owners, and residents understand our changing environment and make informed decisions. Researchers may use these reports to visualize how “normal” high tides could look in the future due to sea level rise, and to improve forecasts of flooding and coastal hazards. Communities can use this shared database of images, reports and maps to communicate their neighborhood’s needs and visions to each other and to city leaders.</p>
+                <p class="box-text">Flood Watch began in 2018, and it is produced in collaboration with the NYC Mayor’s Office of Climate and Environmental Justice, Stevens Institute of Technology, NYC Emergency Management, US Forest Service Urban Field Station, and valued community partners, including the New Hamilton Beach Civic Association, Broad Channel Civic Association, Meyers Emergency Management, Rockaway Initiative for Sustainability and Equity (RISE), Rockaway Beach Civic Association, City Island Rising Inc., Coney Island Beautification Project.</p>
             </div>
         
-            <div class="box">
+            <div class="box" style="margin-bottom:3rem;">
                 <div class="subtitle">
                     <img src="/assets/icons/FN_FW_sensor_icon.svg" alt="" aria-hidden="true">
                     <h2>About FloodNet</h2>
@@ -55,6 +59,18 @@
                 </div>
                 <p class="box-text">Our hope is that access to our openly available flood sensor data can be useful to city agencies and also to community residents, organizations, and coalitions as they work to understand how flooding impacts their neighborhood, explore how flooding is connected to other relevant community issues, and create action strategies in response to the two. Community input and engagement with this project is central to its success but, more importantly, to its ability to foster sustainable impact within the most at-risk communities.</p>
             </div>
+
+
+            <Dottedline/>
+
+            <div class="box">
+                <div class="subtitle">
+                    <h2>Our Funders</h2>
+                </div>
+                <p class="box-text">This website was created with supported by the Alfred P. Sloan Foundation and FEMA’s FY 2022 CTP Program - Region 2, award number EMN-2022-CA-00015. Designed by Studio 2263.</p>
+            
+            </div>
+
     </div>
 </section>
 
@@ -91,11 +107,6 @@
         gap: 1rem;
         margin-bottom: 3rem;
         align-items: flex-start;
-    }
-
-    .title-info > p{
-        margin: 0.5rem 0 0 0;
-        font-size: 1.25rem;
     }
 
     .box-text > a{

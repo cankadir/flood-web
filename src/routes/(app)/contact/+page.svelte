@@ -1,9 +1,8 @@
 
-
 <script>
     let screenWidth = 600;
     let formHeight;
-    $: console.log(screenWidth , formHeight );
+    $: console.log( screenWidth );
 </script>
 
 
@@ -19,13 +18,6 @@
         display: flex;
         flex-direction: column;
         overflow-y: hidden;
-    }
-
-
-    p{
-        font-size: 1.25rem;
-        color: var(--white);
-        margin: 0;
     }
 
     /* if smaller than 1200 */

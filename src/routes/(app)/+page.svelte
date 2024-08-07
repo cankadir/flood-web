@@ -28,12 +28,12 @@
             ShortContent: 'Document flooding by submitting photographs to MyCoast NY'
         },
         {
-            Title: 'Neighborhood Flood Reports', 
+            Title: 'NYC Neighborhood Flood Reports', 
             Norder:5 , 
             Sorder: 1,
             logo: '/assets/icons/FN_FW__local_reports.svg', 
             expends:false, link:"/local-reports", 
-            ShortContent: 'Download reports about flooding in your neighborhood, updated twice per year'},
+            ShortContent: 'View and download reports about flooding in your neighborhood'},
 
         {
             Title: 'Flood Observations', 
@@ -54,15 +54,15 @@
             Sorder: 5,
             logo: '/assets/icons/FN_FW_prepare_icon.svg', 
             expends:false, link:"/prepare", 
-            ShortContent: 'Learn about flood risk and preparedness'
+            ShortContent: 'Learn about flood risk and preparedness in NYC'
         },
         {
-            Title: 'Sign Up for Alerts', 
+            Title: 'Sign up for our email list', 
             Norder:6 , 
             Sorder: 6,
             logo: '/assets/media_icons/subscribe.svg', 
             expends:false, link:"https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link", 
-            ShortContent: 'Sign up for our mailing list'
+            ShortContent: 'Receive notifications of coastal flooding'
         }
     ];
 

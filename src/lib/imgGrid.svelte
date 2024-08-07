@@ -16,7 +16,9 @@
 </script>
 
 <div class="title">
-    <h3>NYC Community Flood Watch Project</h3>
+    <a href="https://srijb.org/jbfloodwatch" aria-label="Visit SRIJB's community flood watch project (opens in a new tab)" target="_blank">
+        <h3>NYC Community Flood Watch Project</h3>
+    </a>
     <p>Recent photos of flooding submitted by community members in NYC</p>
 </div>
 
@@ -46,6 +48,18 @@
 </div>
 
 <style>
+    .title > a{
+        text-decoration: none;
+        color: var(--text-color);
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .title > a :hover{
+        text-decoration: none;
+        color: var(--light-orange);
+    }
+
     .title{
         margin-top: 4rem;
         margin-bottom: 1rem;

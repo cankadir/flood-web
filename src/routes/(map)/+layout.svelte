@@ -53,7 +53,6 @@
         // toggle the visibility and display
         navContent.style.visibility = navContent.style.visibility === 'hidden' ? 'visible' : 'hidden';
         navContent.style.display = navContent.style.display === 'none' ? 'flex' : 'none';
-
         rotation += 45;
     }
 
