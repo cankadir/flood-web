@@ -13,6 +13,7 @@
 
     // if pageUrl is empty the page is a landing page
     pageUrl = pageUrl === '' ? 'landing' : 'other';
+    console.log(pageUrl);
 
 </script>
 
@@ -33,7 +34,7 @@
             {#if pageUrl === 'landing' }
                 <h1>NYC Flood Data</h1>
             {:else}
-                <a href="../" class="home" aria-label="Go back landing page">
+                <a href="/" class="home" aria-label="Go back landing page">
                     <h1>NYC Flood Data</h1>
                 </a>
             {/if}

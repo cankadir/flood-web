@@ -9,8 +9,8 @@
 <footer>
     <div class="footer-content info">
         <div class="footer-row row-1">
-            <div class="item-1"><a href="../about" style="color:var(--white)" aria-label="Go to about page">About</a></div>
-            <div class="item-2"><a href="../contact" style="color:var(--white)" aria-label="Go to contact us page">Contact</a></div>
+            <div class="item-1"><a href="/about" style="color:var(--white)" aria-label="Go to about page">About</a></div>
+            <div class="item-2"><a href="/contact" style="color:var(--white)" aria-label="Go to contact us page">Contact</a></div>
             <div class="item-3">
                 
                 <!-- Social Media icons and links -->

@@ -1,6 +1,5 @@
 
 <script>
-    import '../../style.css';
 
     // get page parameteres using Svelte's params
     import { page } from '$app/stores';
