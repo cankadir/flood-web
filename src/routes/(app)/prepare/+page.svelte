@@ -25,7 +25,7 @@
     <div class="page-content">
         <div class="title">
             <div class="logo" style="width:70px;height:auto;filter:invert(1)">
-                <img src=".\assets\icons\FN_FW_prepare_icon.svg" alt="prepare logo" width="100%" height="100%" />
+                <img src=".\assets\icons\FN_FW_prepare_icon.svg" alt="" aria-hidden="true" width="100%" height="100%" />
             </div>
             <div class="title-info">
                 <h1>Flood Resources</h1>
@@ -39,7 +39,6 @@
     
             <Dottedline {screenWidth} />
     
-    
             <div class="prep-item">
                 <h2>{key}</h2>
     
@@ -48,7 +47,7 @@
                         <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
                             <div class="box-content">
                                 <h4>{item.Subtitle}</h4>
-                                <a href={item.link}>{item.link}</a>
+                                <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank">{item.link}</a>
                                 <p class="box-text">{item.Content}</p>
                             </div>
                         </div>
@@ -66,22 +65,6 @@
     .page-content{
         max-width: 960px;
         margin: 0 auto;
-    }
-
-    .line-container{
-        width:100%;
-        display: flex;
-        flex-direction: row;
-        /* evenly space */
-        /* justify-content: space-evenly; */
-        gap:5px;
-    }
-
-    .line{
-        width:100%;
-        margin:0;
-        padding:0;
-        border: 3px solid var(--light-orange);
     }
 
     .title{

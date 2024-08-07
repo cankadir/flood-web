@@ -20,14 +20,14 @@
     <p>Recent photos of flooding submitted by community members in NYC</p>
 </div>
 
-<div class="myCoast-photos" bind:clientWidth={screenWidth}>
+<div class="myCoast-photos" bind:clientWidth={screenWidth} aria-label="Recent flood observations submitted by community members using My Coast">
     {#await observations}
         <p>Images are loading from MyCoast...</p>
     {:then observations} 
         {#if screenWidth > 720 }
             {#each observations as observation,i}
                 <div class="my-coast">
-                    <img src={observation.properties.picUrl} alt="Coastal {i}"/>
+                    <img src={observation.properties.picUrl} alt="{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}"/>
                     <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span> <span> {observation.properties.photo_time}</span></p>
                     <p class="photo-content" style="font-style:italic">{observation.properties.comment}</p>
                 </div>
@@ -35,7 +35,7 @@
         {:else}
             {#each observations.slice(0, 2) as observation,i}
                 <div class="my-coast">
-                    <img src={observation.properties.picUrl} alt="Coastal {i}"/>
+                    <img src={observation.properties.picUrl} alt="{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}"/>
                     <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span><span> {observation.properties.photo_time}</span></p>
                     <p class="photo-content" style="font-style:italic; margin-top:0 !important;">{observation.properties.comment}</p>
                 </div>

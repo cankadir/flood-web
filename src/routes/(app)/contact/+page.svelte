@@ -8,8 +8,7 @@
 
 
 <div class="page-content" bind:clientWidth={screenWidth}>
-    <!-- <p>Fill the form below to contact us</p> -->
-    <iframe title='contact us form' bind:this={ formHeight } src="https://docs.google.com/forms/d/e/1FAIpQLSdlfUTXbw90RaO2YJerysx0FV27jRZi9cI8Yttl0jDgB7whMA/viewform?embedded=true" width="{screenWidth-40}" height='1150' frameborder="0">Loading…</iframe>
+    <iframe title='Contact us form' bind:this={ formHeight } src="https://docs.google.com/forms/d/e/1FAIpQLSdlfUTXbw90RaO2YJerysx0FV27jRZi9cI8Yttl0jDgB7whMA/viewform?embedded=true" width="{screenWidth-40}" height='1150' frameborder="0">Loading…</iframe>
 </div>
 
 <style>

@@ -1,12 +1,9 @@
 
-// import AIRTABLE_APIKEY from .env using new 
-import { PUBLIC_AIRTABLE_APIKEY, PUBLIC_MYCOAST_APIURL } from "$env/static/public"
-
 export async function load({ fetch }) {
 
     
     // MY COAST API
-    let myCoastURL = PUBLIC_MYCOAST_APIURL;
+    let myCoastURL = "https://mycoast.org/blueurchin-js/arcgis/can-ny.php?page=1";
     const res = fetch(myCoastURL);
     const mycoastPromise = res.then(
         response => response.json()

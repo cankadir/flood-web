@@ -146,13 +146,13 @@
 </script>
 
 {#if showModal}
-    <div class="report-modal" >
-        <button on:click={()=>showModal=false} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;" aria-label="close modal"></button>
+    <div class="report-modal" aria-label="Larger view of the printed local report">
+        <button on:click={()=>showModal=false} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;" aria-label="Close modal"></button>
         <div class="report-display">
-            <img src="{getImage(active_polygon)}" alt="Report" class="report-viz" style="border:#333 solid 1px" /> 
+            <img src="{getImage(active_polygon)}" alt="Printed local report" class="report-viz" style="border:#333 solid 1px" /> 
             
-            <button class="report-close" on:click={() => showModal = false}>
-                <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="Close modal" width="100%" height="100%" style="transform:rotate(45deg)">
+            <button class="report-close" on:click={() => showModal = false} aria-label="Close modal">
+                <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden="true" width="100%" height="100%" style="transform:rotate(45deg)">
             </button>
         </div>    
     </div>
@@ -163,7 +163,7 @@
     <div class="panel">
         <div class="content">
             <div class="map-title" style="padding: 0 {pad}rem;">
-                <img src="./assets/icons/FN_FW_report_icon.svg" alt="report logo" width="70px" height='auto' style="filter:invert(1);">
+                <img src="./assets/icons/FN_FW_report_icon.svg" alt="" aria-hidden="true" width="70px" height='auto' style="filter:invert(1);">
                 <h1 style="font-size:1.75rem;margin:0 0 1.5rem 0">Neighborhood<br>Flood Reports</h1>
             </div>
             <h2 style='margin-top:0;margin-bottom:1rem;padding:0 {pad}rem'>Access a Local Flood Report</h2>
@@ -193,7 +193,7 @@
                     <button on:click={()=>showModal=true} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;" aria-label="View report larger in a modal"></button>
                     <h3 style="margin:0.5rem;">{reports_data.find(report => report.fields.id === active_polygon).fields.labels}</h3>
                     <p>Click on the image below to view the report larger in the browser</p>
-                    <img src="{getImage(active_polygon)}" alt="Report" class="report-viz" />        
+                    <img src="{getImage(active_polygon)}" alt="Printed Local Report Report for the selected region" class="report-viz" />        
                 </div>
             {:else}
                 <div class="info" style="padding:0 {pad}rem">
@@ -209,7 +209,7 @@
                     {#each ['pdf','img'] as reporttype}
                         <button class="download" on:click={(e) => report_download(e)} id="{reporttype}" aria-label="download the report for {reports_data.find(report => report.fields.id === active_polygon).fields.labels}">
                             <div class="footer-button">{reporttype.toLocaleUpperCase()}</div>
-                            <img src="./assets/icons/FN_FW_UI_icon_download.svg" alt="" width="25px" height="25px">
+                            <img src="./assets/icons/FN_FW_UI_icon_download.svg" alt="" aria-hidden="true" width="25px" height="25px">
                         </button>
                     {/each}
                 </div>

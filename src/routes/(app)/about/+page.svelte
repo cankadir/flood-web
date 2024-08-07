@@ -24,7 +24,7 @@
         
             <div class="box">
                 <div class="subtitle">
-                    <img src="/assets/icons/FN_FW_observation_icon.svg" alt="Flood Net logo">
+                    <img src="/assets/icons/FN_FW_observation_icon.svg" aria-hidden="true" alt="">
                     <h2>About the NYC Community Flood Watch Project</h2>
                 </div>
                 <p class="box-text">The <a href="https://srijb.org/jbfloodwatch/">Community Flood Watch Project</a> is a collaboration between New York Sea Grant and the Science and Resilience Institute at Jamaica Bay that serves a growing network of residents and organizations who report local flooding, share experiences, and access resources related to flooding in NYC coastal communities. Flood Watch has two main areas of focus: (1) building a public archive of flood photos through community science and (2) carrying out programs aimed at increasing community flood resilience through collaborative research, workshops, talks, and, and the <a href="https://srijb.org/jamaica-bay-community-flood-fellowship-program/">Community Flood Fellowship series</a>.</p>
@@ -34,13 +34,13 @@
         
             <div class="box">
                 <div class="subtitle">
-                    <img src="/assets/icons/FN_FW_sensor_icon.svg" alt="Flood Net logo">
+                    <img src="/assets/icons/FN_FW_sensor_icon.svg" alt="" aria-hidden="true">
                     <h2>About FloodNet</h2>
                 </div>
                 <p class="box-text">FloodNet’s mission is to develop tools for real-time urban flood monitoring, implement these tools to measure flooding in New York City, and make flood data and monitoring tools available in a manner that is accessible and useful to stakeholders including residents, community-based organizations, government agencies, and researchers. The FloodNet team is composed of researchers and practitioners at New York University, the City University of New York, and New York City government agencies working in collaboration with stakeholders to collect and share data that contribute toward flood risk mitigation and building community flood resilience.  FloodNet began in 2020 as a partnership between academic researchers at New York University (NYU) and City University of New York (CUNY), and NYC agencies, including the Mayor’s Office of Climate & Environmental Justice, NYC Department of Environmental Protection (DEP), and NYC Office of Technology & Innovation. Together, the group works with various stakeholders and in consultation with community organizations to monitor hyperlocal street-level flooding in NYC.</p>
                 <h3>Sensors & Data</h3>
                 <p class="box-text">FloodNet sensors provide real-time information about flooding, including the presence, frequency, and depth of hyperlocal street-level flood events. The sensors use ultrasonic technology to collect depth measurements every one minute and transmit the measurements wirelessly to our servers. Flood data is publicly accessible, and displayed on the <a href="https://dataviz.floodnet.nyc/">FloodNet data dashboard</a> in real-time.  The sensors operate independently of existing power and networking infrastructure. The information collected by the sensors can help residents make critical decisions during events such as which streets are safe to use, and whether or not their home will be impacted by flooding.</p>
-                <p class="box-text">All FloodNet sensor data can be viewed publicly on our <a href="https://dataviz.floodnet.nyc/">data dashboard</a>. The dashboard landing page illustrates where all FloodNet sensors are located, as well as the values of the depth measurements each sensor is taking in real time. Users can click on a sensor icon to view data from that sensor over time. There is also a ‘List’ view, accessible from the dashboard landing page, where users can scroll to view recent data from all flood sensors. List view is a useful tool for identifying locations that have flooded in the 48 hours following a flood event.</p>
+                <p class="box-text">All FloodNet sensor data can be viewed publicly on our <a href="https://dataviz.floodnet.nyc/" aria-label='Visit FloodNet website (opens in a new tab)' target='_blank'>data dashboard</a>. The dashboard landing page illustrates where all FloodNet sensors are located, as well as the values of the depth measurements each sensor is taking in real time. Users can click on a sensor icon to view data from that sensor over time. There is also a ‘List’ view, accessible from the dashboard landing page, where users can scroll to view recent data from all flood sensors. List view is a useful tool for identifying locations that have flooded in the 48 hours following a flood event.</p>
                 <p class="box-text">Flood sensor data have multiple potential uses including:</p>
         
                 <div style="margin-left:2rem;">

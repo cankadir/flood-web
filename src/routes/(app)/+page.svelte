@@ -1,8 +1,8 @@
 
 <script>
 
-    import Card from "../../lib/card.svelte";
-    import ImgGrid from '../../lib/imgGrid.svelte';
+    import Card from "$lib/card.svelte";
+    import ImgGrid from '$lib/imgGrid.svelte';
 
     let buttonsContent = [
         {
@@ -71,7 +71,6 @@
 
     // watch for the screensize changes
     let screenWidth;
-    // $: console.log(screenWidth);
 
     const pageBreak = 720;
 

@@ -61,40 +61,45 @@
 
 </script>
 
+<svelte:head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <title>NYC Flood Data</title>
+</svelte:head>
+
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
 
-<!-- All webmap Content goes here -->
-
 <div class="external-content" bind:clientWidth={screenwidth}>
-    <div class="floating-nav">
-        
+    
+    <div class="floating-nav" aria-label="Floating navigation linking to the main pages">
         <div class="nav-title">
             <!-- Title bar -->
             <h3>{pageItems[0]['name'].toUpperCase()}</h3>
             <!-- Close Open -->
-            <button class="expender" on:click={(e)=>handleClick(e)}>
-                <img class="shrink-nav" src="./assets/icons/FN_FW_UI_icon_open.svg" alt="expend nav bar" style="transform:rotate({rotation}deg);">
+            <button class="expender" on:click={(e)=>handleClick(e)} aria-label="expand the floating navigation">
+                <img class="shrink-nav" src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden="true" style="transform:rotate({rotation}deg);">
             </button>
         </div>
         
-
         <div class="nav-content">
             {#each filteredItems as item}
 
                 {#if screenwidth > 960}
                     <div class="link-1">
-                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="go back to {item.name} page">
-                            <img class="nav-logo" src={item.logo} alt="{item.name} logo" width="30" height="30">
+                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="Go back to {item.name} page (opens in a new page)">
+                            <img class="nav-logo" src={item.logo} alt="" aria-hidden="true" width="30" height="30">
                             <span class='nav-text'>{item.name}</span>
                         </a>
                     </div>
                 {:else}
                     <div class="link-1">
-                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="go back to {item.name} page">
-                            <img class="nav-logo" src={item.logo} alt="{item.name} logo" width="25" height="25">
+                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="Go back to {item.name} page (opens in a new page)">
+                            <img class="nav-logo" src={item.logo} alt="" aria-hidden="true" width="25" height="25">
                         </a>
                     </div>
                 {/if}
