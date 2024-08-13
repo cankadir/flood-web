@@ -124,12 +124,13 @@
         }
 
         .inst-logos{
-            max-height: 100px;
+            max-height: 95px;
             width: auto;
         }
 
         .logos{
             justify-content: center !important;
+            gap: 1rem !important;
         }
 
         .blank{

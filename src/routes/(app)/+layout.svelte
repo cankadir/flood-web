@@ -25,7 +25,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    <title>NYC Flood Data</title>
+    <title>NYC Flood Data | Information about flooding in New York City</title>
+    <meta name="description" content="Learn about street-level flooding in NYC, where it has been observed, and how it's changing, and view resources for residents who experience flooding.">
+    <meta name= "keywords" content= "Floodnet, Flood watch, Floodwatch, Flood reports, NYC Flood" >
 </svelte:head>
 
 

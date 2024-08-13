@@ -35,9 +35,8 @@
     
         <!-- Generate a min title for each key, this is the first column in the list. -->
         {#each Object.keys(data_grouped) as key}
-            <!-- Make dotted line -->
-    
-            <Dottedline {screenWidth} />
+            
+            <Dottedline />
     
             <div class="prep-item">
                 <h2>{key}</h2>
@@ -46,8 +45,11 @@
                     {#each data_grouped[key] as item}
                         <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
                             <div class="box-content">
-                                <h4>{item.Subtitle}</h4>
-                                <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank">{item.link}</a>
+                                {#if item.link}
+                                    <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank" class="resource-link"><h4>{item.Subtitle}</h4></a>
+                                {:else}
+                                    <h4>{item.Subtitle}</h4>
+                                {/if}
                                 <p class="box-text">{item.Content}</p>
                             </div>
                         </div>
@@ -145,6 +147,11 @@
         section{
             margin: 0 4rem;
         }
+    }
+
+    .resource-link:hover{
+        color: var(--light-orange);
+        text-decoration: underline;
     }
 
 

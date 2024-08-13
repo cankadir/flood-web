@@ -26,7 +26,8 @@
 
             map = L.map(mapElement).setView([40.7128, -74.0060], 11);
             map.zoomControl.setPosition('bottomright');
-
+            map.scrollWheelZoom.disable();
+            
             L.tileLayer( "https://api.mapbox.com/styles/v1/cankadir/clplqlyio001o01qmewg54ov3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2Fua2FkaXIiLCJhIjoiY2pteXplNnEzMHF3YTNrcGx0dGd4MmJrdiJ9.zbhQ39YIdfZufTljuTSl1w" , {
                 attribution: '© designed by Studio 2263'
             }).addTo(map);
@@ -145,6 +146,12 @@
 
 </script>
 
+<svelte:head>
+    <title>NYC Neighborhood Flood Report</title>
+    <meta name="description" content="View and download reports about flooding in some NYC neighborhoods, including 311 data, flood depth and frequency, and photographs.">
+    <meta name= "keywords" content= "Floodnet, Flood watch, Floodwatch, Flood reports, NYC Flood, Local reports, printed flood reports" >
+</svelte:head>
+
 {#if showModal}
     <div class="report-modal" aria-label="Larger view of the printed local report">
         <button on:click={()=>showModal=false} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;" aria-label="Close modal"></button>
@@ -171,10 +178,10 @@
 
             <!-- Create a dropdown elements where the fields are report.fields.labels -->
             <div style="padding:0 {pad}rem;">
-                <p>View report for:</p>
 
                 <div class="styled-select">
-                    <select class="custom-select">
+                    <label for="regions" >View report for:</label>
+                    <select class="custom-select"id='regions' style="margin-top:15px;">
                         <option disabled selected>Select a neighborhood</option>
                         {#each reports_data as label}
                             {#if label.fields.has_report === "Y"}

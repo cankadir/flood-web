@@ -62,7 +62,7 @@
 
     <!-- The expender button + x -->
     {#if button.expends}
-        <button class="expender" on:click={ (e) => handleClick(e) } aria-label="Expand the card to view more information">
+        <button class="expender" on:click={ (e) => handleClick(e) } aria-label="Expand the card to view more information on {button.Title}">
             <div class="image-position"><img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden='true' class="expends-button" style="transform:rotate({rotation}deg)" ></div>
         </button>
 
