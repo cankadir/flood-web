@@ -80,7 +80,7 @@
     }
 
     .logo{
-        width: auto;
+        width: 2rem;
         height: 2rem;
     }
 
