@@ -1,9 +1,0 @@
-{
-    "rewrites": [
-      { "source": "/floodweb/(.*)", "destination": "floodweb/index.html" }
-    ],
-    "redirects": [
-      { "source": "/", "destination": "/floodweb", "permanent": true }
-    ]
-  }
-  
