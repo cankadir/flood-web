@@ -61,7 +61,7 @@
     }
 
     .title{
-        margin-top: 4rem;
+        margin-top: 8rem;
         margin-bottom: 1rem;
     }
 

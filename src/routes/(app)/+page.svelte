@@ -9,12 +9,12 @@
             Title: 'Flood Sensor Data', 
             Norder:1 , 
             Sorder: 4,
-            logo: '/assets/icons/FN_FW_sensor_icon.svg', 
-            expends:true, link:"../floodnet", 
+            logo: 'assets/icons/FN_FW_sensor_icon.svg', 
+            expends:true, link:"/floodnet", 
             ShortContent: 'View real-time and historic flood depth data from the FloodNet NYC sensor network', 
             LongContent: {
                 Title:"FloodNet NYC", 
-                Link:"../floodnet", 
+                Link:"#/floodnet", 
                 image:'FloodNet-Dashboard.png', 
                 Content:"FloodNet NYC is a network of sensors that register street-level flooding at specific locations in flood-prone areas of the city. You can view data from these sensors through the data dashboard here."
             }
@@ -23,28 +23,28 @@
             Title: 'Participate', 
             Norder:3 , 
             Sorder: 2,
-            logo: '/assets/icons/FN_FW_participate_icon.svg', 
-            expends:false, link:"../participate", 
+            logo: 'assets/icons/FN_FW_participate_icon.svg', 
+            expends:false, link:"#/participate", 
             ShortContent: 'Document flooding by submitting photographs to MyCoast NY'
         },
         {
             Title: 'NYC Neighborhood Flood Reports', 
             Norder:5 , 
             Sorder: 1,
-            logo: '/assets/icons/FN_FW__local_reports.svg', 
-            expends:false, link:"/local-reports", 
+            logo: 'assets/icons/FN_FW__local_reports.svg', 
+            expends:false, link:"#/local-reports", 
             ShortContent: 'View and download reports about flooding in your neighborhood'},
 
         {
             Title: 'Flood Observations', 
             Norder:4 , 
             Sorder: 3,
-            logo: '/assets/icons/FN_FW_observation_icon.svg', 
+            logo: 'assets/icons/FN_FW_observation_icon.svg', 
             expends:true, 
             ShortContent: 'See photo documentation of flooding in NYC and submit your own', 
             LongContent: {
                 Title:"MyCoast NY", 
-                Link:"../floodwatch", 
+                Link:"#/floodwatch", 
                 image:'MyCoast_SS.png', 
                 Content:"Citizen scientists with the NYC Community Flood Watch Project have been contributing to a data archive of flood photos since 2018. Photos are integrated with environmental information such as tide level and recent rainfall through the MyCoast NY app. View this data and add your own photo reports to contribute to understanding of how flooding is changing in NYC."}
         },
@@ -52,15 +52,15 @@
             Title: 'Flood Resources', 
             Norder:3 , 
             Sorder: 5,
-            logo: '/assets/icons/FN_FW_prepare_icon.svg', 
-            expends:false, link:"/prepare", 
+            logo: 'assets/icons/FN_FW_prepare_icon.svg', 
+            expends:false, link:"#/prepare", 
             ShortContent: 'Learn about flood risk and preparedness in NYC'
         },
         {
             Title: 'Sign up for our email list', 
             Norder:6 , 
             Sorder: 6,
-            logo: '/assets/media_icons/subscribe.svg', 
+            logo: 'assets/media_icons/subscribe.svg', 
             expends:false, link:"https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link", 
             ShortContent: 'Receive notifications of coastal flooding'
         }
@@ -71,7 +71,6 @@
 
     // watch for the screensize changes
     let screenWidth;
-
     const pageBreak = 720;
 
 </script>
@@ -121,8 +120,8 @@
     section {
             display: flex;
             height: 100%;
-            
         }
+
     /* if screen is larger than 960 */
     @media screen and (min-width: 1200px){
         section {

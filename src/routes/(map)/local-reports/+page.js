@@ -15,10 +15,12 @@ export async function load({ fetch }) {
 
     const report_data = await report_res.json();
     console.log("Data Received from Air table - Reports");
+    console.log(report_data);
 
     // Get geojson from static folder called report-boundaries.geojson
-    const report_geo = await fetch('/assets/report_boundaries.geojson');
+    const report_geo = await fetch('./assets/report_boundaries.geojson');
     const report_geojson = await report_geo.json();
+    console.log("Data Received from Geojson - Report Boundaries");
 
     return {
         props: { 

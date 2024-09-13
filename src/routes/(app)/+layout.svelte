@@ -2,34 +2,31 @@
 
     import Footer from "$lib/footer.svelte";
     import { page } from '$app/stores';
-    import { onMount } from 'svelte';
 
     let screenWidth;
     const pageBreak = 720;
     let pageUrl;
-
-    $: pageUrl = $page.url.href;
     
-    onMount(() => {
-        console.log(pageUrl);
+    // I am determining wether the page is the landing page or not.
+    // If it is the landing page, I will make the home link unclickable
+    $: {
+        pageUrl = $page.url.hash;
         pageUrl = pageUrl.split('/');
         pageUrl = pageUrl[pageUrl.length - 1];
         pageUrl = pageUrl === '' ? 'landing' : 'other';
-    });
+        console.log(pageUrl);
 
+        // scroll to top ofthe page
+        window.scrollTo(0, 0);
+    }
 </script>
 
 <!-- svelte head -->
 <svelte:head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
     <title>NYC Flood Data | Information about flooding in New York City</title>
     <meta name="description" content="Learn about street-level flooding in NYC, where it has been observed, and how it's changing, and view resources for residents who experience flooding.">
     <meta name= "keywords" content= "Floodnet, Flood watch, Floodwatch, Flood reports, NYC Flood" >
 </svelte:head>
-
 
 <div class="page" bind:clientWidth={screenWidth}>
     <nav data-sveltekit-reload>
@@ -37,7 +34,7 @@
             {#if pageUrl === 'landing' }
                 <h1>NYC Flood Data</h1>
             {:else}
-                <a href="/" class="home" aria-label="Go back landing page" on:click={pageUrl='landing'}>
+                <a href="#/" class="home" aria-label="Go back landing page" on:click={pageUrl='landing'}>
                     <h1>NYC Flood Data</h1>
                 </a>
             {/if}

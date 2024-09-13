@@ -1,23 +1,39 @@
-<script>
 
+<script>
+    
+    // import { onMount } from 'svelte';
     import Dottedline from "$lib/dottedline.svelte";
 
-    export let data;
+    let dataPromise = fetchData();
 
-    let data_simple = data.props.prep.map(prep => prep.fields);
-    data_simple.sort((a, b) => a.order - b.order);
+    async function fetchData() {
+        // AIR TABLE - Preparedness
+        let public_key = "patfoFHZpi11znkas.afefdf9daa13bb452cbd559575156e67e6d2c880da7f2c69d10ff820586dd84b";
+        let at_url = 'https://api.airtable.com/v0/appvTkmJJRpz8x95D/Preparedness';
+        let Bearer = 'Bearer ' + public_key;
+        const at_res = await fetch(at_url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': Bearer
+            }
+        });
 
-    // group data by Title
-    let data_grouped = data_simple.reduce((r, a) => {
-        r[a.Title] = r[a.Title] || [];
-        r[a.Title].push(a);
-        return r;
-    }, Object.create(null));
+        const at_data = await at_res.json();
+        console.log("Data Received from Air table - Prep");
 
-    let screenWidth;
-    let item_width = 13;
-    $: item_count = Math.floor(screenWidth / item_width);
-    $: count_array = Array.from({ length: item_count }, (_, i) => i);
+        let data = at_data.records;
+        let data_simple = data.map(prep => prep.fields);
+        data_simple.sort((a, b) => a.order - b.order);
+
+        // group data by Title
+        let data_grouped = data_simple.reduce((r, a) => {
+            r[a.Title] = r[a.Title] || [];
+            r[a.Title].push(a);
+            return r;
+        }, {});
+
+        return data_grouped;
+    }
 
 </script>
 
@@ -25,42 +41,46 @@
     <div class="page-content">
         <div class="title">
             <div class="logo" style="width:70px;height:auto;filter:invert(1)">
-                <img src=".\assets\icons\FN_FW_prepare_icon.svg" alt="" aria-hidden="true" width="100%" height="100%" />
+                <img src="./assets/icons/FN_FW_prepare_icon.svg" alt="" aria-hidden="true" width="100%" height="100%" />
             </div>
             <div class="title-info">
                 <h1>Flood Resources</h1>
                 <p style="font-size:1.5rem">Learn about flood risk and preparedness</p>
             </div>
         </div>
-    
-        <!-- Generate a min title for each key, this is the first column in the list. -->
-        {#each Object.keys(data_grouped) as key}
-            
-            <Dottedline />
-    
-            <div class="prep-item">
-                <h2>{key}</h2>
-    
-                <div class="resources">
-                    {#each data_grouped[key] as item}
-                        <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
-                            <div class="box-content">
-                                {#if item.link}
-                                    <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank" class="resource-link"><h4>{item.Subtitle}</h4></a>
-                                {:else}
-                                    <h4>{item.Subtitle}</h4>
-                                {/if}
-                                <p class="box-text">{item.Content}</p>
+        
+        {#await dataPromise}
+            <p>Loading...</p>
+        {:then data_grouped}
+            <!-- Generate a min title for each key, this is the first column in the list. -->
+            {#each Object.keys(data_grouped) as key}
+                
+                <Dottedline />
+        
+                <div class="prep-item">
+                    <h2>{key}</h2>
+        
+                    <div class="resources">
+                        {#each data_grouped[key] as item}
+                            <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
+                                <div class="box-content">
+                                    {#if item.link}
+                                        <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank" class="resource-link"><h4>{item.Subtitle}</h4></a>
+                                    {:else}
+                                        <h4>{item.Subtitle}</h4>
+                                    {/if}
+                                    <p class="box-text">{item.Content}</p>
+                                </div>
                             </div>
-                        </div>
-                    {/each}
+                        {/each}
+                    </div>
                 </div>
-            </div>
-        {/each}
+            {/each}
+        {:catch error}
+            <p style="color:red">{error.message}</p>
+        {/await}
     </div>
 </section>
-
-
 
 <style>
 

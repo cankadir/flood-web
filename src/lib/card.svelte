@@ -4,29 +4,18 @@
 
     let rotation = 0;
     function handleClick( e ){
-        // This function handles all epxending and content changes on click to expend.
-        let expender;
 
-        Object.keys( button ).forEach(element => {
-            if( element == "expends" ){ expender = button[element]; }
-        });
+        let clicked_box = e.target.parentElement;
+        clicked_box.classList.toggle("expended");
 
-        // If a box is allowed to expend
-        if(expender){
-            // toggle the expended class of the box
-            console.log(e.target.parentElement);
-            let clicked_box = e.target.parentElement;
-            clicked_box.classList.toggle("expended");
-
-            // toggle the hidden class of the box-content
-            let content = clicked_box.getElementsByClassName("box-content");
-            for(let i = 0; i < content.length; i++){
-                content[i].classList.toggle("hidden");
-            }
-
-            // check if the box is expended, rotate the arrow
-            rotation += 45;
+        // toggle the hidden class of the box-content
+        let content = clicked_box.getElementsByClassName("box-content");
+        for(let i = 0; i < content.length; i++){
+            content[i].classList.toggle("hidden");
         }
+
+        // check if the box is expended, rotate the arrow
+        rotation += 45;
     }
 
 </script>
@@ -37,44 +26,49 @@
     </div>
     
     <!-- This gets replaced on click -->
-    <div class="box-content">
+    <div class="box-content" style="pointer-events:none">
         <h3>{button.Title}</h3>
         <p class="box-text">{button.ShortContent}</p>
     </div>
 
     <!-- For Flood Net and Flood Watch Boxes-->
-    <div class="box-content hidden">
+    <div class="box-content hidden" style="pointer-events:none">
         <h3>{button.Title}</h3>
-        <p class="box-text">{button.ShortContent}</p>
+        <p class="box-text" style="pointer-events:none">{button.ShortContent}</p>
         
         <!-- if there is a LongContent key in the button -->
         {#if Object.keys(button).includes("LongContent")}
             <!-- Link the the site -->
-            <div class="titlelink">
+
+            <a class="titlelink" href={button.LongContent.Link} target="_blank" style="pointer-events:all !important">
                 <img src="./assets/icons/arrow_black.svg" alt="" aria-hidden="true" class="arrow">
-                <a style="color:var(--blue);cursor:pointer;" href={button.LongContent.Link} target="_blank" aria-label="Go to project site for {button.Title}" >{button.LongContent.Title}</a>
-            </div>
+                <span>{button.LongContent.Title}</span>
+            </a>
             
-            <p class="long-content">{button.LongContent.Content}</p>
-            <img class='long-image' src="./assets/{button.LongContent.image}" alt="Dashboard Screenshot">
+            <p class="long-content" style="pointer-events:none">{button.LongContent.Content}</p>
+            <img class='long-image' src="./assets/{button.LongContent.image}" alt="Dashboard Screenshot" style="pointer-events:none">
         {/if}
     </div>
 
     <!-- The expender button + x -->
     {#if button.expends}
-        <button class="expender" on:click={ (e) => handleClick(e) } aria-label="Expand the card to view more information on {button.Title}">
-            <div class="image-position"><img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden='true' class="expends-button" style="transform:rotate({rotation}deg)" ></div>
-        </button>
+
+        <div class="expender" on:click={ (e) => handleClick(e) } on:keypress={ (e) => handleClick(e) } role="button" aria-pressed="false" tabindex="0" aria-label="Expand the card to view more information on {button.Title}">
+            <div class="image-position">
+                <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden='true' class="expends-button" style="transform:rotate({rotation}deg)" >
+            </div>
+        </div>
 
     {:else}
         <a href="{button.link}" class="expender" target="_blank" aria-label="Visit {button.Title} page (open in a new tab)">
-            <div class="image-position"><img src="./assets/icons/UI_icon__arrow.svg" alt="" aria-hidden='true' class="expends-button" ></div>
+            <div class="image-position">
+                <img src="./assets/icons/UI_icon__arrow.svg" alt="" aria-hidden='true' class="expends-button" >
+            </div>
         </a>
     {/if}
 </div>
 
 <style>
-
 
     .image-position{
         width: 100%;
@@ -91,11 +85,16 @@
         position: absolute;
     }
 
+    .box-content{
+        user-select: none;
+        z-index: 10;
+        cursor: pointer;
+    }
+
     .box > .expender{
         position: absolute;
         top: 0;
         right: 0;
-        cursor: pointer;
         border: none;
         color: var(--text-color);
         background-color: transparent;
@@ -103,7 +102,8 @@
         outline: none;
         width: 100%;
         height: 100%;
-        padding: 0 !important
+        padding: 0 !important;
+        z-index: 0;
     }
 
     .box:hover > .expender{
@@ -133,8 +133,8 @@
         filter: invert(85%) sepia(48%) saturate(6687%) hue-rotate(351deg) brightness(98%) contrast(102%);
     }
 
-    .titlelink:hover > .arrow{
-        filter: invert(1);
+    .titlelink:hover {
+        background-color: rgb(245, 245, 245);
     }
 
     .titlelink{
@@ -152,15 +152,6 @@
         z-index: 1000;
     }
 
-    .titlelink:hover{
-        background-color: var(--orange);
-        color: var(--white);
-    }
-
-    .titlelink:hover > a{
-        color: var(--white) !important;
-    }
-
     img{
         width:100%;
         height: auto;
@@ -168,13 +159,6 @@
 
     :global(.md){
         margin: 0;
-    }
-
-    .box-content{
-        user-select: none;
-        z-index: 10;
-        pointer-events: none;
-        cursor: pointer;
     }
 
     .box-content > p{

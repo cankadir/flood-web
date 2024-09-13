@@ -1,10 +1,16 @@
-import adapter from '@sveltejs/adapter-auto';
 
-/** @type {import('@sveltejs/kit').Config} */
+import adapter from '@sveltejs/adapter-static';
+
+
 const config = {
 	kit: {
-		adapter: adapter()
-	}
+		adapter: adapter({ 
+			fallback: 'index.html' ,
+			// pages: 'build',
+			// assets: 'build',
+		}) , 
+		paths: { base: '/floodweb' }
+	},
 };
 
 export default config;

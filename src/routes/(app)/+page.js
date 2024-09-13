@@ -1,13 +1,13 @@
 
 export async function load({ fetch }) {
 
-    
     // MY COAST API
     let myCoastURL = "https://mycoast.org/blueurchin-js/arcgis/can-ny.php?page=1";
     const res = fetch(myCoastURL);
     const mycoastPromise = res.then(
         response => response.json()
     ).then(my_coast_data => {
+        // Use a geograpihc bounding box to filter the data
         let lonmin = -74.3600;
         let lonmax = -73.6750;
         let latmin = 40.4878;
@@ -24,6 +24,7 @@ export async function load({ fetch }) {
             }
         });
 
+        // Shuffle the data and select 4 random rows
         my_coast_data_filtered = my_coast_data_filtered.slice(0, 20);
         my_coast_data_filtered = my_coast_data_filtered.sort(() => Math.random() - Math.random()).slice(0, 4);
 

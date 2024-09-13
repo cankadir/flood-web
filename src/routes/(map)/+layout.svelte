@@ -3,47 +3,46 @@
 
     // get page parameteres using Svelte's params
     import { page } from '$app/stores';
-    let url = $page.url.pathname;
-    // remove last /
-    url = url.slice(0, -1);
-
+    let url = $page.url.hash;
+    url = url.split('/')
+    url = url[url.length - 1];
+    
     const layoutItems = [
         {
-            logo: '../assets/icons/FN_FW_sensor_icon.svg',
+            logo: 'assets/icons/FN_FW_sensor_icon.svg',
             name: 'Flood Sensor Data',
-            link: '../floodnet'
+            link: '#/floodnet'
         },
         {
-            logo: '../assets/icons/FN_FW_observation_icon.svg',
+            logo: 'assets/icons/FN_FW_observation_icon.svg',
             name: 'Flood Observations',
-            link: '../floodwatch'
+            link: '#/floodwatch'
         },
         {
-            logo: '../assets/icons/FN_FW_participate_icon.svg',
+            logo: 'assets/icons/FN_FW_participate_icon.svg',
             name: 'Participate',
-            link: '../participate'
+            link: '#/participate'
         },
         {
-            logo: '../assets/icons/FN_FW__local_reports.svg',
+            logo: 'assets/icons/FN_FW__local_reports.svg',
             name: 'Local Flood Reports',
-            link: '../local-reports'
+            link: '#/local-reports'
         },
         {
-            logo: '../assets/icons/FN_FW_prepare_icon.svg',
-            name: 'Prepare',
-            link: '../prepare'
+            logo: 'assets/icons/FN_FW_prepare_icon.svg',
+            name: 'Flood Resources',
+            link: '#/prepare'
         },
         {
-            logo: '../assets/icons/FN_FW_home_icon.svg',
+            logo: 'assets/icons/FN_FW_home_icon.svg',
             name: 'Home',
-            link: '../'
+            link: '#/'
         } 
     ]
 
     let screenwidth;
     // filter layoutItems where link parameter contains url
     const pageItems = layoutItems.filter(item => item.link.includes(url));
-
     const filteredItems = layoutItems.filter(item => item.link !== pageItems[0]['link']);
 
     let rotation = 45;
@@ -60,16 +59,13 @@
 </script>
 
 <svelte:head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
 </svelte:head>
 
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-   crossorigin=""/>
 
 <div class="external-content" bind:clientWidth={screenwidth}>
     

@@ -1,5 +1,3 @@
-// import AIRTABLE_APIKEY from .env using new 
-import { PUBLIC_AIRTABLE_APIKEY, PUBLIC_MYCOAST_APIURL } from "$env/static/public"
 
 export async function load({ fetch }) {
 

@@ -1,16 +1,16 @@
 <script>
     let logos = [
-        {'sm':'FloodNet Instagram', 'link':'https://www.instagram.com/floodnetnyc/', 'icon':'/assets/media_icons/instagram.svg'},
-        {'sm':'NYC Community Flood Watch Project FB Page', 'link':'https://www.facebook.com/groups/floodwatch ', 'icon':'/assets/media_icons/facebook.svg'},
-        {'sm':'Flood Watch Email Sign Up', 'link':'https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link', 'icon':'/assets/media_icons/email.svg'},
+        {'sm':'FloodNet Instagram', 'link':'https://www.instagram.com/floodnetnyc/', 'icon':'assets/media_icons/instagram.svg'},
+        {'sm':'NYC Community Flood Watch Project FB Page', 'link':'https://www.facebook.com/groups/floodwatch ', 'icon':'assets/media_icons/facebook.svg'},
+        {'sm':'Flood Watch Email Sign Up', 'link':'https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link', 'icon':'assets/media_icons/email.svg'},
     ];
 </script>
 
 <footer>
     <div class="footer-content info">
         <div class="footer-row row-1">
-            <div class="item-1"><a href="/about" style="color:var(--white)" aria-label="Go to about page">About</a></div>
-            <div class="item-2"><a href="/contact" style="color:var(--white)" aria-label="Go to contact us page">Contact</a></div>
+            <div class="item-1"><a href="#/about" style="color:var(--white)" aria-label="Go to about page">About</a></div>
+            <div class="item-2"><a href="#/contact" style="color:var(--white)" aria-label="Go to contact us page">Contact</a></div>
             <div class="item-3">
                 
                 <!-- Social Media icons and links -->
@@ -32,20 +32,20 @@
     <div class="footer-content blank"></div>
 
     <div class="footer-content logos">
-        <a href="https://www.floodnet.nyc/" target="_blank" aria-label="Visit FloodNet website (open in a new tab)"><img class="inst-logos" src="./assets/FloodNet-White-01.png" alt="" aria-hidden="true"></a>
-        <a href="https://seagrant.sunysb.edu/" target="_blank" aria-label="Visit Seagrant website (open in a new tab)"><img class="inst-logos" src="./assets/SeaGrantLogo.png" alt="" aria-hidden="true"></a>
+        <a href="https://www.floodnet.nyc/" target="_blank" aria-label="Visit FloodNet website (open in a new tab)"><img class="inst-logos" src="assets/FloodNet-White-01.png" alt="" aria-hidden="true"></a>
+        <a href="https://seagrant.sunysb.edu/" target="_blank" aria-label="Visit Seagrant website (open in a new tab)"><img class="inst-logos" src="assets/SeaGrantLogo.png" alt="" aria-hidden="true"></a>
     </div>
 
 </footer>
 
 <style>
     footer{
-        height: 12rem;
+        /* height: 12rem; */
         border-top: 1px solid var(--text-color);
         display: grid;
         grid-template-columns: 2fr 1fr 1fr;
         max-width: var(--site-width);
-        margin: 0 auto 3rem auto;
+        margin: 3rem auto 3rem auto;
 
     }
 

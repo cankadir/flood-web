@@ -21,7 +21,7 @@
         
             <div class="box">
                 <div class="subtitle">
-                    <img src="/assets/icons/FN_FW_observation_icon.svg" aria-hidden="true" alt="">
+                    <img src="assets/icons/FN_FW_observation_icon.svg" aria-hidden="true" alt="">
                     <h2>About the NYC Community Flood Watch Project</h2>
                 </div>
 
@@ -38,7 +38,7 @@
         
             <div class="box" style="margin-bottom:3rem;">
                 <div class="subtitle">
-                    <img src="/assets/icons/FN_FW_sensor_icon.svg" alt="" aria-hidden="true">
+                    <img src="assets/icons/FN_FW_sensor_icon.svg" alt="" aria-hidden="true">
                     <h2>About FloodNet</h2>
                 </div>
                 <p class="box-text">FloodNet’s mission is to develop tools for real-time urban flood monitoring, implement these tools to measure flooding in New York City, and make flood data and monitoring tools available in a manner that is accessible and useful to stakeholders including residents, community-based organizations, government agencies, and researchers. The FloodNet team is composed of researchers and practitioners at New York University, the City University of New York, and New York City government agencies working in collaboration with stakeholders to collect and share data that contribute toward flood risk mitigation and building community flood resilience.  FloodNet began in 2020 as a partnership between academic researchers at New York University (NYU) and City University of New York (CUNY), and NYC agencies, including the Mayor’s Office of Climate & Environmental Justice, NYC Department of Environmental Protection (DEP), and NYC Office of Technology & Innovation. Together, the group works with various stakeholders and in consultation with community organizations to monitor hyperlocal street-level flooding in NYC.</p>

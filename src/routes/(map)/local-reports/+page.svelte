@@ -1,15 +1,8 @@
 
 <script>
     
-    // Read data from Airtable
-
-    export let data;
-
-    let reports_data = data.props.reports;
-    const reports_geo = data.props.report_geojson.features;
-
-    import { onMount } from 'svelte';
-    import { browser } from '$app/environment';
+    let reports_data;
+    let reports_geo;
 
     let mapElement;
     let map;
@@ -18,11 +11,44 @@
     let showModal = false; // show modal for the report
     let pad = 1.3; // padding for the panel
 
+
+    async function fetchData() {
+    
+        let public_key = "patfoFHZpi11znkas.afefdf9daa13bb452cbd559575156e67e6d2c880da7f2c69d10ff820586dd84b";
+        let report_boundaries_url = "https://api.airtable.com/v0/appvTkmJJRpz8x95D/Report%20Boundaries?filterByFormula=%7Bhas_report%7D+%3D+'Y'"
+
+        let Bearer = 'Bearer ' + public_key;
+        const at_res = await fetch( report_boundaries_url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': Bearer
+            }
+        });
+
+        const at_data = await at_res.json();
+        console.log("Data Received from Air table - Reports");
+        
+        const report_geo = await fetch('assets/report_boundaries.geojson');
+        const report_geojson = await report_geo.json();
+        console.log("Data Received from Geojson - Report Boundaries");
+
+        reports_data = at_data.records;
+        reports_geo = report_geojson.features;
+
+        return { reports_data, reports_geo };
+    }
+
+    let dataPromise = fetchData();
+    import { onMount } from 'svelte';
+    import { browser } from '$app/environment';
+
+
     onMount(async () => {
         if(browser) {
 
-            // Load leaflet
             const L = await import('leaflet');
+            // Wait for the data to download
+            const { reports_data, reports_geo } = await dataPromise;
 
             map = L.map(mapElement).setView([40.7128, -74.0060], 11);
             map.zoomControl.setPosition('bottomright');
@@ -71,7 +97,7 @@
                     clicked.forEach((el) => el.classList.remove('map-clicked'));
                     e.target._path.classList.add('map-clicked');
                     active_polygon = e.target._path.id;
-                   
+                
                     // center map on clicked polygon
                     let center = e.target.getBounds().getCenter();
                     map.panTo(center);
@@ -103,7 +129,6 @@
             // if the map is clicked but not a polygon, remove the active_polygon
             map.on('click', function(e) {
                 // check if the clicked element is a polygon
-                console.log( polygonClicked );
                 if (polygonClicked === false) {
                     // remove active polygon
                     active_polygon = null;
@@ -119,8 +144,7 @@
             });
         }
     });
-
-
+    
     // Get the image from the report based on the active_polygon
     function getImage( active_polygon ) {
         const report = reports_data.find(report => report.fields.id === active_polygon);
@@ -159,74 +183,79 @@
             <img src="{getImage(active_polygon)}" alt="Printed local report" class="report-viz" style="border:#333 solid 1px" /> 
             
             <button class="report-close" on:click={() => showModal = false} aria-label="Close modal">
-                <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden="true" width="100%" height="100%" style="transform:rotate(45deg)">
+                <img src="assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden="true" width="100%" height="100%" style="transform:rotate(45deg)">
             </button>
         </div>    
     </div>
 {/if}
 
-<div class="reports-container">
-    <!-- Panel is offsetted -->
-    <div class="panel">
-        <div class="content">
-            <div class="map-title" style="padding: 0 {pad}rem;">
-                <img src="./assets/icons/FN_FW_report_icon.svg" alt="" aria-hidden="true" width="70px" height='auto' style="filter:invert(1);">
-                <h1 style="font-size:1.75rem;margin:0 0 1.5rem 0">Neighborhood<br>Flood Reports</h1>
-            </div>
-            <h2 style='margin-top:0;margin-bottom:1rem;padding:0 {pad}rem'>Access a Local Flood Report</h2>
-            <h3 style='margin-top:0;margin-bottom:1rem;padding:0 {pad}rem'>Select a neighborhood from the map or dropdown</h3>
 
-            <!-- Create a dropdown elements where the fields are report.fields.labels -->
-            <div style="padding:0 {pad}rem;">
+    <div class="reports-container">
+        
+        {#await dataPromise}
+        <!-- Panel components waits for the promise but the map div does not have to -->
+            <p>Loading...</p>
+        {:then { reports_data, reports_geo } }
+            <div class="panel">
+                <div class="content">
+                    <div class="map-title" style="padding: 0 {pad}rem;">
+                        <img src="assets/icons/FN_FW_report_icon.svg" alt="" aria-hidden="true" width="70px" height='auto' style="filter:invert(1);">
+                        <h1 style="font-size:1.75rem;margin:0 0 1.5rem 0">Neighborhood<br>Flood Reports</h1>
+                    </div>
+                    <h2 style='margin-top:0;margin-bottom:1rem;padding:0 {pad}rem'>Access a Local Flood Report</h2>
+                    <h3 style='margin-top:0;margin-bottom:1rem;padding:0 {pad}rem'>Select a neighborhood from the map or dropdown</h3>
 
-                <div class="styled-select">
-                    <label for="regions" >View report for:</label>
-                    <select class="custom-select"id='regions' style="margin-top:15px;">
-                        <option disabled selected>Select a neighborhood</option>
-                        {#each reports_data as label}
-                            {#if label.fields.has_report === "Y"}
-                                <option id="{label.fields.id}">{label.fields.labels}</option>
-                            {/if}
-                        {/each}
-                    </select>
-                </div>
+                    <!-- Create a dropdown elements where the fields are report.fields.labels -->
+                    <div style="padding:0 {pad}rem;">
 
-            </div>
+                        <div class="styled-select">
+                            <label for="regions" >View report for:</label>
+                            <select class="custom-select"id='regions' style="margin-top:15px;">
+                                <option disabled selected>Select a neighborhood</option>
+                                {#each reports_data as label}
+                                    {#if label.fields.has_report === "Y"}
+                                        <option id="{label.fields.id}">{label.fields.labels}</option>
+                                    {/if}
+                                {/each}
+                            </select>
+                        </div>
+                    </div>
 
-            
-            {#if active_polygon}
-                <div class="report-smallpic" style="padding:1rem {pad}rem">
-                    <!-- create a transparent button that covers the full div -->
-                    <button on:click={()=>showModal=true} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;" aria-label="View report larger in a modal"></button>
-                    <h3 style="margin:0.5rem;">{reports_data.find(report => report.fields.id === active_polygon).fields.labels}</h3>
-                    <p>Click on the image below to view the report larger in the browser</p>
-                    <img src="{getImage(active_polygon)}" alt="Printed Local Report Report for the selected region" class="report-viz" />        
-                </div>
-            {:else}
-                <div class="info" style="padding:0 {pad}rem">
-                    <p>Neighborhood flood reports were created in conversation with communities in flood prone areas across NYC who wanted an easy way to gather verified information about flooding their neighborhoods. You could use these reports to share information with your elected officials, as a classroom tool, or to organize your community to find ways to prepare for and respond to flooding. If you have questions or want to share a story about how you’ve used these reports, get in touch with us!</p>
-                    <p><strong>Contribute your own information:</strong><br>Submit a flood photo to the MyCoast NY app, and you may see your experience reflected in the next set of neighborhood flood reports.</p>
-                </div>
-            {/if}
-            
-            {#if active_polygon}
-                <div class="panel-footer">
-                    <div class="footer-button">Download </div>
+                    {#if active_polygon}
+                        <div class="report-smallpic" style="padding:1rem {pad}rem">
+                            <!-- create a transparent button that covers the full div -->
+                            <button on:click={()=>showModal=true} style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:transparent;border:none;padding:0;margin:0;" aria-label="View report larger in a modal"></button>
+                            <h3 style="margin:0.5rem; margin-left:0 !important">{reports_data.find(report => report.fields.id === active_polygon).fields.labels}</h3>
+                            <p>Click on the image below to view the report larger in the browser</p>
+                            <img src="{getImage(active_polygon)}" alt="Printed Local Report Report for the selected region" class="report-viz" />        
+                        </div>
+                    {:else}
+                        <div class="info" style="padding:0 {pad}rem">
+                            <p>Neighborhood flood reports were created in conversation with communities in flood prone areas across NYC who wanted an easy way to gather verified information about flooding their neighborhoods. You could use these reports to share information with your elected officials, as a classroom tool, or to organize your community to find ways to prepare for and respond to flooding. If you have questions or want to share a story about how you’ve used these reports, get in touch with us!</p>
+                            <p><strong>Contribute your own information:</strong><br>Submit a flood photo to the MyCoast NY app, and you may see your experience reflected in the next set of neighborhood flood reports.</p>
+                        </div>
+                    {/if}
                     
-                    {#each ['pdf','img'] as reporttype}
-                        <button class="download" on:click={(e) => report_download(e)} id="{reporttype}" aria-label="download the report for {reports_data.find(report => report.fields.id === active_polygon).fields.labels}">
-                            <div class="footer-button">{reporttype.toLocaleUpperCase()}</div>
-                            <img src="./assets/icons/FN_FW_UI_icon_download.svg" alt="" aria-hidden="true" width="25px" height="25px">
-                        </button>
-                    {/each}
+                    {#if active_polygon}
+                        <div class="panel-footer">
+                            <div class="footer-button">Download </div>
+                            
+                            {#each ['pdf','img'] as reporttype}
+                                <button class="download" on:click={(e) => report_download(e)} id="{reporttype}" aria-label="download the report for {reports_data.find(report => report.fields.id === active_polygon).fields.labels}">
+                                    <div class="footer-button">{reporttype.toLocaleUpperCase()}</div>
+                                    <img src="assets/icons/FN_FW_UI_icon_download.svg" alt="" aria-hidden="true" width="25px" height="25px">
+                                </button>
+                            {/each}
+                        </div>
+                    {/if}
                 </div>
-            {/if}
-        </div>
+            </div>
+        {/await}
+
+        <!-- Leaflet Map is here -->
+        <div class="map" bind:this={mapElement} aria-label="Interactive map showing regions with reports. Use the dropdown menu to access the same report."></div>
     </div>
 
-    <!-- Leaflet Map is here -->
-    <div class="map" bind:this={mapElement} aria-label="Interactive map showing regions with reports. Use the dropdown menu to access the same report."></div>
-</div>
 
 
 <style>
@@ -288,7 +317,7 @@
         border: none;
         border-radius: 5px;
         height: 34px;
-        background: url(/assets/icons/FN_FW_UI_icon_dropdown_orange.svg) no-repeat right #ddd;
+        background: url(/assets/icons/FN_FW_UI_icon_dropdown_orange.svg) no-repeat right #ffffff;
         background-size: 1.25rem;
         appearance:none;
         -moz-appearance:none; /* Firefox */
@@ -326,6 +355,7 @@
         color: var(--white);
         font-size: 1.1rem;
         padding: 0.5rem;
+        padding-left: 1.25rem !important;
     }
 
     .footer-button{
