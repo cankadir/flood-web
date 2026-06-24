@@ -3,6 +3,32 @@
     // import page
     import { page } from '$app/stores';
     let observations = $page.data.props.mycoast;
+
+    let loadedUrls = {};
+
+    function setImageLoaded(url) {
+        loadedUrls = { ...loadedUrls, [url]: true };
+    }
+
+    function revealWhenReady(node, url) {
+        function reveal() {
+            setImageLoaded(url);
+        }
+
+        if (node.complete && node.naturalHeight > 0) {
+            reveal();
+        } else {
+            node.addEventListener('load', reveal);
+            node.addEventListener('error', reveal);
+        }
+
+        return {
+            destroy() {
+                node.removeEventListener('load', reveal);
+                node.removeEventListener('error', reveal);
+            }
+        };
+    }
     
     function convertDate(date){
         let newDate = new Date(date);
@@ -11,7 +37,9 @@
         return newDate;
     }
 
-    let screenWidth;
+    function photoTitle(title) {
+        return title.replace("Photo Station report from ", "").replace("High Water report from ", "");
+    }
 
 </script>
 
@@ -22,28 +50,28 @@
     <p>Recent photos of flooding submitted by community members in NYC</p>
 </div>
 
-<div class="myCoast-photos" bind:clientWidth={screenWidth} aria-label="Recent flood observations submitted by community members using My Coast">
+<div class="myCoast-photos" aria-label="Recent flood observations submitted by community members using My Coast">
     {#await observations}
         <p>Images are loading from MyCoast...</p>
-    {:then observations} 
-        {#if screenWidth > 720 }
-            {#each observations as observation,i}
-                <div class="my-coast">
-                    <img src={observation.properties.picUrl} alt="{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}"/>
-                    <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span> <span> {observation.properties.photo_time}</span></p>
-                    <p class="photo-content" style="font-style:italic">{observation.properties.comment}</p>
+    {:then observations}
+        {#each observations as observation, i (observation.properties.picUrl)}
+            {@const picUrl = observation.properties.picUrl}
+            {@const title = photoTitle(observation.properties.title)}
+            <div class="my-coast" class:hide-on-mobile={i >= 2} class:loaded={loadedUrls[picUrl]}>
+                <div class="photo-frame">
+                    {#if !loadedUrls[picUrl]}
+                        <div class="photo-placeholder" aria-hidden="true"></div>
+                    {/if}
+                    <img
+                        src={picUrl}
+                        alt={title}
+                        use:revealWhenReady={picUrl}
+                    />
                 </div>
-            {/each}
-        {:else}
-            {#each observations.slice(0, 2) as observation,i}
-                <div class="my-coast">
-                    <img src={observation.properties.picUrl} alt="{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}"/>
-                    <p class="photo-content"><span>{observation.properties.title.replace("Photo Station report from ","").replace("High Water report from ","")}</span> • <span>{ convertDate(observation.properties.photo_date) }</span><span> {observation.properties.photo_time}</span></p>
-                    <p class="photo-content" style="font-style:italic; margin-top:0 !important;">{observation.properties.comment}</p>
-                </div>
-            {/each}
-        {/if}
-            
+                <p class="photo-content"><span>{title}</span> • <span>{ convertDate(observation.properties.photo_date) }</span> <span> {observation.properties.photo_time}</span></p>
+                <p class="photo-content photo-comment">{observation.properties.comment}</p>
+            </div>
+        {/each}
     {/await}
 </div>
 
@@ -91,11 +119,46 @@
         overflow-y: hidden;
     }
 
-    .myCoast-photos > .my-coast > img{
+    .photo-frame{
+        position: relative;
+        width: 100%;
+        height: 200px;
+        margin-bottom: 0.5rem;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+
+    .photo-placeholder{
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .myCoast-photos > .my-coast > .photo-frame > img{
         object-fit: cover;
         width: 100%;
-        height: 200px !important;
-        margin-bottom: 0.5rem;
+        height: 200px;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+    }
+
+    .my-coast.loaded > .photo-frame > img{
+        opacity: 1;
+    }
+
+    .my-coast .photo-content,
+    .my-coast .photo-comment{
+        opacity: 0;
+        transition: opacity 0.35s ease;
+    }
+
+    .my-coast.loaded .photo-content,
+    .my-coast.loaded .photo-comment{
+        opacity: 1;
+    }
+
+    .photo-comment{
+        font-style: italic;
     }
 
     .photo-content{
@@ -113,6 +176,10 @@
     @media (max-width: calc(720px + 6rem)) {
         .myCoast-photos {
             grid-template-columns: 1fr 1fr;
+        }
+
+        .hide-on-mobile {
+            display: none;
         }
     }
 

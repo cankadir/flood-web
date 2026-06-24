@@ -14,7 +14,6 @@ export async function load({ fetch }) {
     });
 
     const report_data = await report_res.json();
-    console.log("Data Received from Air table - Reports");
 
     // Get geojson from static folder called report-boundaries.geojson
     const report_geo = await fetch('/assets/report_boundaries.geojson');

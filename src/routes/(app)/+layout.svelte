@@ -4,8 +4,6 @@
     import { page } from '$app/stores';
     import { onMount } from 'svelte';
 
-    let screenWidth;
-    const pageBreak = 720;
     let pageUrl;
 
     $: pageUrl = $page.url.href;
@@ -31,7 +29,7 @@
 </svelte:head>
 
 
-<div class="page" bind:clientWidth={screenWidth}>
+<div class="page">
     <nav data-sveltekit-reload>
         <div class="title">
             {#if pageUrl === 'landing' }
@@ -41,9 +39,7 @@
                     <h1>NYC Flood Data</h1>
                 </a>
             {/if}
-            {#if screenWidth > pageBreak }
-                <h2>Learn about street-level flooding in NYC, where it has been observed, and what it looks like</h2>
-            {/if}
+            <h2 class="subtitle">Learn about street-level flooding in NYC, where it has been observed, and what it looks like</h2>
         </div>
     </nav>
 
@@ -141,6 +137,10 @@
     @media screen and (max-width: 720px){
         main{
             margin: 3rem auto;
+        }
+
+        .subtitle{
+            display: none;
         }
     }
 

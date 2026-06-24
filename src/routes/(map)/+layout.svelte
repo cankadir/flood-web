@@ -1,11 +1,7 @@
 
 <script>
 
-    // get page parameteres using Svelte's params
     import { page } from '$app/stores';
-    let url = $page.url.pathname;
-    // remove last /
-    url = url.slice(0, -1);
 
     const layoutItems = [
         {
@@ -38,13 +34,20 @@
             name: 'Home',
             link: '../'
         } 
-    ]
+    ];
 
-    let screenwidth;
-    // filter layoutItems where link parameter contains url
-    const pageItems = layoutItems.filter(item => item.link.includes(url));
+    function matchLayoutItem(pathname) {
+        const path = pathname.replace(/\/$/, '') || '/';
 
-    const filteredItems = layoutItems.filter(item => item.link !== pageItems[0]['link']);
+        return layoutItems.find(item => {
+            const segment = item.link.replace(/^\.\.\//, '');
+            if (segment === '') return path === '/';
+            return path === `/${segment}` || path.endsWith(`/${segment}`);
+        }) ?? layoutItems.find(item => item.name === 'Home');
+    }
+
+    $: currentPage = matchLayoutItem($page.url.pathname);
+    $: filteredItems = layoutItems.filter(item => item.link !== currentPage.link);
 
     let rotation = 45;
     function handleClick(e){
@@ -71,12 +74,12 @@
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
 
-<div class="external-content" bind:clientWidth={screenwidth}>
+<div class="external-content">
     
     <div class="floating-nav" aria-label="Floating navigation linking to the main pages">
         <div class="nav-title">
             <!-- Title bar -->
-            <h3>{pageItems[0]['name'].toUpperCase()}</h3>
+            <h3>{currentPage.name.toUpperCase()}</h3>
             <!-- Close Open -->
             <button class="expender" on:click={(e)=>handleClick(e)} aria-label="expand the floating navigation">
                 <img class="shrink-nav" src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden="true" style="transform:rotate({rotation}deg);">
@@ -85,22 +88,12 @@
         
         <div class="nav-content">
             {#each filteredItems as item}
-
-                {#if screenwidth > 960}
-                    <div class="link-1">
-                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="Go back to {item.name} page (opens in a new page)">
-                            <img class="nav-logo" src={item.logo} alt="" aria-hidden="true" width="30" height="30">
-                            <span class='nav-text'>{item.name}</span>
-                        </a>
-                    </div>
-                {:else}
-                    <div class="link-1">
-                        <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="Go back to {item.name} page (opens in a new page)">
-                            <img class="nav-logo" src={item.logo} alt="" aria-hidden="true" width="25" height="25">
-                        </a>
-                    </div>
-                {/if}
-
+                <div class="link-1">
+                    <a class="nav-buttons" href="{item.link}" target="_blank" aria-label="Go back to {item.name} page (opens in a new page)">
+                        <img class="nav-logo" src={item.logo} alt="" aria-hidden="true" width="30" height="30">
+                        <span class='nav-text'>{item.name}</span>
+                    </a>
+                </div>
             {/each}
         </div>
 

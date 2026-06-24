@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="footer-row row-2">
-            <p id="disclaimer"><strong>Disclaimer: </strong> The information on this site only pertains to street-level flooding in New York City and does not include indoor or below ground flooding. Because this information relies on community observations and data from flood sensors, not all floods are recorded, only those that are documented by a person or measured by a sensor. The links and advice on this page were last updated May 5th, 2024 and could be out of date.</p>
+            <p id="disclaimer"><strong>Disclaimer: </strong> The information on this site only pertains to street-level flooding in New York City and does not include indoor or below ground flooding. Because this information relies on community observations and data from flood sensors, not all floods are recorded, only those that are documented by a person or measured by a sensor. The links and advice on this page were last updated July 23rd, 2026 and could be out of date.</p>
         </div>
     </div>
 

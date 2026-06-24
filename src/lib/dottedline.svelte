@@ -18,7 +18,6 @@
         width:100%;
         margin:0;
         padding:0;
-        /* border: 2px dashed var(--light-orange); */
         border: none;
         height: 4px;
         background: repeating-linear-gradient(

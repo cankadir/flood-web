@@ -1,6 +1,3 @@
-// import AIRTABLE_APIKEY from .env using new 
-import { PUBLIC_AIRTABLE_APIKEY, PUBLIC_MYCOAST_APIURL } from "$env/static/public"
-
 export async function load({ fetch }) {
 
     // AIR TABLE - Preparedness
@@ -15,7 +12,6 @@ export async function load({ fetch }) {
     });
 
     const at_data = await at_res.json();
-    console.log("Data Received from Air table - Prep");
 
     return {
         props: { 

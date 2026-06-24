@@ -4,29 +4,19 @@
 
     let rotation = 0;
     function handleClick( e ){
-        // This function handles all epxending and content changes on click to expend.
-        let expender;
+        if (!button.expends) return;
 
-        Object.keys( button ).forEach(element => {
-            if( element == "expends" ){ expender = button[element]; }
-        });
+        const clicked_box = e.currentTarget.closest('.box');
+        if (!clicked_box) return;
 
-        // If a box is allowed to expend
-        if(expender){
-            // toggle the expended class of the box
-            console.log(e.target.parentElement);
-            let clicked_box = e.target.parentElement;
-            clicked_box.classList.toggle("expended");
+        clicked_box.classList.toggle('expended');
 
-            // toggle the hidden class of the box-content
-            let content = clicked_box.getElementsByClassName("box-content");
-            for(let i = 0; i < content.length; i++){
-                content[i].classList.toggle("hidden");
-            }
-
-            // check if the box is expended, rotate the arrow
-            rotation += 45;
+        const content = clicked_box.getElementsByClassName('box-content');
+        for (let i = 0; i < content.length; i++) {
+            content[i].classList.toggle('hidden');
         }
+
+        rotation += 45;
     }
 
 </script>
@@ -52,7 +42,7 @@
             <!-- Link the the site -->
             <div class="titlelink">
                 <img src="./assets/icons/arrow_black.svg" alt="" aria-hidden="true" class="arrow">
-                <a style="color:var(--blue);cursor:pointer;" href={button.LongContent.Link} target="_blank" aria-label="Go to project site for {button.Title}" >{button.LongContent.Title}</a>
+                <a style="color:var(--blue);cursor:pointer;" href={button.LongContent.Link} aria-label="Go to project site for {button.Title}" >{button.LongContent.Title}</a>
             </div>
             
             <p class="long-content">{button.LongContent.Content}</p>
@@ -116,10 +106,24 @@
         transition: linear 0.5s;
     }
     
-    :global( .expended > .expender){
+    :global(.expended > .expender){
         transition: linear 0.5s;
         background-color: transparent !important;
         color: var(--blue) !important;
+        width: 4rem;
+        height: 4rem;
+    }
+
+    :global(.expended) .titlelink{
+        pointer-events: auto;
+    }
+
+    :global(.expended) .titlelink a{
+        pointer-events: auto;
+    }
+
+    .titlelink .arrow{
+        width: 2.5rem;
     }
 
     :global( .expended > .expender > .image-position > img ){
