@@ -27,7 +27,7 @@
         >
             {title}
             <img
-                src="/assets/icons/FN_FW_UI_icon_open.svg"
+                src="./assets/icons/FN_FW_UI_icon_open.svg"
                 alt=""
                 aria-hidden="true"
                 class="toggle-icon"

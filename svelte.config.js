@@ -6,10 +6,11 @@ const config = {
 	kit: {
 		adapter: adapter({ 
 			fallback: 'index.html' ,
-			// pages: 'build',
-			// assets: 'build',
+			pages: 'docs',
+			assets: 'docs',
 		}) , 
-		paths: { base: '/floodweb' }
+		// paths: { base: '/floodweb' }
+		paths: { base: '/flood-web' }
 	},
 };
 

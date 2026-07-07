@@ -1,8 +1,8 @@
 <script>
     let logos = [
-        {'sm':'FloodNet Instagram', 'link':'https://www.instagram.com/floodnetnyc/', 'icon':'/assets/media_icons/instagram.svg'},
-        {'sm':'NYC Community Flood Watch Project FB Page', 'link':'https://www.facebook.com/groups/floodwatch ', 'icon':'/assets/media_icons/facebook.svg'},
-        {'sm':'Flood Watch Email Sign Up', 'link':'https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link', 'icon':'/assets/media_icons/email.svg'},
+        {'sm':'FloodNet Instagram', 'link':'https://www.instagram.com/floodnetnyc/', 'icon':'./assets/media_icons/instagram.svg'},
+        {'sm':'NYC Community Flood Watch Project FB Page', 'link':'https://www.facebook.com/groups/floodwatch ', 'icon':'./assets/media_icons/facebook.svg'},
+        {'sm':'Flood Watch Email Sign Up', 'link':'https://docs.google.com/forms/d/e/1FAIpQLSfIG7c5TdT-PGNvjnMF8lRpS5kr_SlpxTc0bW1wsyI4U_NlXQ/viewform?usp=sf_link', 'icon':'./assets/media_icons/email.svg'},
     ];
 </script>
 
