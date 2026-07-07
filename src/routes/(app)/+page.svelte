@@ -3,16 +3,10 @@
 
     import Card from "$lib/card.svelte";
     import ImgGrid from '$lib/imgGrid.svelte';
+    import { reportsPromo } from '$lib/reportsPromo.js';
 
     let buttonsContent = [
-        {
-            Title: 'NYC Neighborhood Flood Reports',
-            order: 1,
-            logo: '/assets/icons/FN_FW__local_reports.svg',
-            expends: false,
-            link: "/local-reports",
-            ShortContent: 'View and download reports about flooding in your neighborhood'
-        },
+        reportsPromo,
         {
             Title: 'Flood Tools & Resources',
             order: 2,
@@ -72,6 +66,26 @@
 
 <section >
     <div class="page-content">
+        <a
+            href={reportsPromo.link}
+            class="reports-feature"
+            target="_blank"
+            aria-label="Visit {reportsPromo.Title} page (open in a new tab)"
+        >
+            <div class="reports-feature-image">
+                <img
+                    src={reportsPromo.mapImage}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                />
+            </div>
+            <div class="reports-feature-text">
+                <h3>{reportsPromo.Title}</h3>
+                <p class="reports-feature-subtitle">{reportsPromo.ShortContent}</p>
+            </div>
+        </a>
+
         <div class="flood-buttons-grid">
             {#each buttonsContent as button (button.Title)}
                 <div class="card-slot" style="--order: {button.order}">
@@ -109,6 +123,66 @@
         }
     }
 
+    .page-content {
+        width: 100%;
+    }
+
+    .reports-feature {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto 2.5rem auto;
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 1.25rem 1.5rem;
+        box-sizing: border-box;
+        text-decoration: none;
+        color: var(--text-color);
+        background-color: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        transition: background-color 0.2s ease;
+        cursor: pointer;
+    }
+
+    .reports-feature:hover {
+        background-color: rgba(255, 255, 255, 0.12);
+        color: var(--text-color);
+    }
+
+    .reports-feature-text {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .reports-feature-text h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: inherit;
+    }
+
+    .reports-feature-subtitle {
+        margin: 0.5rem 0 0 0;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        color: inherit;
+    }
+
+    .reports-feature-image {
+        flex-shrink: 0;
+        height: 200px;
+        max-height: 200px;
+    }
+
+    .reports-feature-image img {
+        height: 200px;
+        max-height: 200px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
     .flood-buttons-grid{
         max-width: 960px;
         margin: 1rem auto;
@@ -129,6 +203,26 @@
 
         .card-slot{
             order: var(--order);
+        }
+
+        .reports-feature {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+            padding: 1rem 1.25rem;
+        }
+
+        .reports-feature-image {
+            height: 200px;
+            max-height: 200px;
+        }
+
+        .reports-feature-image img {
+            height: 200px;
+            max-height: 200px;
+            width: auto;
+            max-width: 100%;
         }
     }
 

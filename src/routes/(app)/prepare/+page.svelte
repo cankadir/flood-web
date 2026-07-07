@@ -54,14 +54,6 @@
                         {#each data_grouped[key] as item}
                             {@const toolImageUrl = getToolImageUrl(item)}
                             <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
-                                <div class="box-content">
-                                    {#if item.link}
-                                        <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank" class="resource-link"><h4>{item.Subtitle}</h4></a>
-                                    {:else}
-                                        <h4>{item.Subtitle}</h4>
-                                    {/if}
-                                    <p class="box-text">{item.Content}</p>
-                                </div>
                                 <div class="tool-thumbnail-wrap">
                                     {#if toolImageUrl}
                                         <img
@@ -72,6 +64,14 @@
                                             loading="lazy"
                                         />
                                     {/if}
+                                </div>
+                                <div class="box-content">
+                                    {#if item.link}
+                                        <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank" class="resource-link"><h4>{item.Subtitle}</h4></a>
+                                    {:else}
+                                        <h4>{item.Subtitle}</h4>
+                                    {/if}
+                                    <p class="box-text">{item.Content}</p>
                                 </div>
                             </div>
                         {/each}
@@ -127,6 +127,7 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .prep-item {

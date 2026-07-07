@@ -30,7 +30,7 @@
 
 
 <div class="page">
-    <nav data-sveltekit-reload>
+    <section class="page-header" data-sveltekit-reload>
         <div class="title">
             {#if pageUrl === 'landing' }
                 <h1>NYC Flood Data</h1>
@@ -41,7 +41,7 @@
             {/if}
             <h2 class="subtitle">Learn about street-level flooding in NYC, where it has been observed, and what it looks like</h2>
         </div>
-    </nav>
+    </section>
 
     <main>
         <slot></slot>
@@ -87,7 +87,7 @@
             margin-left: 1.5rem;
         }
 
-        nav{
+        .page-header{
             width: var(--site-width);
             margin: 6rem auto 2rem auto;
         }
@@ -101,7 +101,7 @@
             margin-left: 0;
         }
 
-        nav{
+        .page-header{
             margin: 6rem 3rem 2rem 3rem !important;
         }
     }
