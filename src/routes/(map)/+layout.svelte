@@ -1,12 +1,8 @@
 
 <script>
 
-    // get page parameteres using Svelte's params
     import { page } from '$app/stores';
-    let url = $page.url.hash;
-    url = url.split('/')
-    url = url[url.length - 1];
-    
+
     const layoutItems = [
         {
             logo: 'assets/icons/FN_FW_sensor_icon.svg',
@@ -37,14 +33,23 @@
             logo: 'assets/icons/FN_FW_home_icon.svg',
             name: 'Home',
             link: '#/'
-        } 
-    ]
+        }
+    ];
+
+    function matchLayoutItem(hash) {
+        const route = (hash || '#/').replace('#/', '').split('/')[0] || 'landing';
+
+        if (route === '' || route === 'landing' || route === 'home') {
+            return layoutItems.find(item => item.name === 'Home');
+        }
+
+        return layoutItems.find(item => item.link === `#/${route}`) ?? layoutItems.find(item => item.name === 'Home');
+    }
+
+    $: currentPage = matchLayoutItem($page.url.hash);
+    $: filteredItems = layoutItems.filter(item => item.link !== currentPage.link);
 
     let screenwidth;
-    // filter layoutItems where link parameter contains url
-    const pageItems = layoutItems.filter(item => item.link.includes(url));
-    const filteredItems = layoutItems.filter(item => item.link !== pageItems[0]['link']);
-
     let rotation = 45;
     function handleClick(e){
         // find .nav-content under floating-nav, find .nav-content first
@@ -72,7 +77,7 @@
     <div class="floating-nav" aria-label="Floating navigation linking to the main pages">
         <div class="nav-title">
             <!-- Title bar -->
-            <h3>{pageItems[0]['name'].toUpperCase()}</h3>
+            <h3>{currentPage.name.toUpperCase()}</h3>
             <!-- Close Open -->
             <button class="expender" on:click={(e)=>handleClick(e)} aria-label="expand the floating navigation">
                 <img class="shrink-nav" src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden="true" style="transform:rotate({rotation}deg);">

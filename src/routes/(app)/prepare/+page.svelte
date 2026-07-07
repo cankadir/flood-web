@@ -1,16 +1,13 @@
-
 <script>
-    
-    // import { onMount } from 'svelte';
-    import Dottedline from "$lib/dottedline.svelte";
+
+    import Accordion from "$lib/accordion.svelte";
 
     let dataPromise = fetchData();
 
     async function fetchData() {
-        // AIR TABLE - Preparedness
-        let public_key = "patfoFHZpi11znkas.afefdf9daa13bb452cbd559575156e67e6d2c880da7f2c69d10ff820586dd84b";
-        let at_url = 'https://api.airtable.com/v0/appvTkmJJRpz8x95D/Preparedness';
-        let Bearer = 'Bearer ' + public_key;
+        const public_key = 'patfoFHZpi11znkas.afefdf9daa13bb452cbd559575156e67e6d2c880da7f2c69d10ff820586dd84b';
+        const at_url = 'https://api.airtable.com/v0/appvTkmJJRpz8x95D/Preparedness';
+        const Bearer = 'Bearer ' + public_key;
         const at_res = await fetch(at_url, {
             headers: {
                 'Content-Type': 'application/json',
@@ -19,20 +16,34 @@
         });
 
         const at_data = await at_res.json();
-        console.log("Data Received from Air table - Prep");
 
-        let data = at_data.records;
-        let data_simple = data.map(prep => prep.fields);
+        const data_simple = at_data.records.map(prep => prep.fields);
         data_simple.sort((a, b) => a.order - b.order);
 
-        // group data by Title
-        let data_grouped = data_simple.reduce((r, a) => {
+        return data_simple.reduce((r, a) => {
             r[a.Title] = r[a.Title] || [];
             r[a.Title].push(a);
             return r;
-        }, {});
+        }, Object.create(null));
+    }
 
-        return data_grouped;
+    function slugify(text) {
+        return text.toLowerCase().replaceAll(' ', '-');
+    }
+
+    function getToolImageUrl(item) {
+        const image = item.tool_image;
+        if (!image) return null;
+
+        if (Array.isArray(image)) {
+            if (image.length === 0) return null;
+            const first = image[0];
+            return first?.thumbnails?.large?.url || first?.url || first?.thumbnails?.small?.url || null;
+        }
+
+        if (typeof image === 'string' && image.trim()) return image;
+
+        return null;
     }
 
 </script>
@@ -48,32 +59,40 @@
                 <p style="font-size:1.5rem">Learn about flood risk and preparedness</p>
             </div>
         </div>
-        
+
         {#await dataPromise}
             <p>Loading...</p>
         {:then data_grouped}
-            <!-- Generate a min title for each key, this is the first column in the list. -->
             {#each Object.keys(data_grouped) as key}
-                
-                <Dottedline />
-        
                 <div class="prep-item">
-                    <h2>{key}</h2>
-        
-                    <div class="resources">
-                        {#each data_grouped[key] as item}
-                            <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(" ","-")}">
-                                <div class="box-content">
-                                    {#if item.link}
-                                        <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank" class="resource-link"><h4>{item.Subtitle}</h4></a>
-                                    {:else}
-                                        <h4>{item.Subtitle}</h4>
-                                    {/if}
-                                    <p class="box-text">{item.Content}</p>
+                    <Accordion id={slugify(key)} title={key} headingLevel={2}>
+                        <div class="resources">
+                            {#each data_grouped[key] as item}
+                                {@const toolImageUrl = getToolImageUrl(item)}
+                                <div class="box" id="{item.Subtitle.toLowerCase().replaceAll(' ','-')}">
+                                    <div class="tool-thumbnail-wrap">
+                                        {#if toolImageUrl}
+                                            <img
+                                                class="tool-thumbnail"
+                                                src={toolImageUrl}
+                                                alt=""
+                                                aria-hidden="true"
+                                                loading="lazy"
+                                            />
+                                        {/if}
+                                    </div>
+                                    <div class="box-content">
+                                        {#if item.link}
+                                            <a href={item.link} aria-label="Visit {item.Subtitle} site (opens in a new tab)" target="_blank" class="resource-link"><h4>{item.Subtitle}</h4></a>
+                                        {:else}
+                                            <h4>{item.Subtitle}</h4>
+                                        {/if}
+                                        <p class="box-text">{item.Content}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        {/each}
-                    </div>
+                            {/each}
+                        </div>
+                    </Accordion>
                 </div>
             {/each}
         {:catch error}
@@ -81,6 +100,8 @@
         {/await}
     </div>
 </section>
+
+
 
 <style>
 
@@ -116,12 +137,6 @@
         line-height: 3rem;
     }
 
-    h2{
-        font-size: 2.5rem;
-        margin-bottom: 25px;
-        color: var(--light-orange);
-    }
-
     h4{
         font-size: 1.5rem;
         margin: 0 0 0.5rem 0;
@@ -130,7 +145,8 @@
     .resources{
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .prep-item {
@@ -146,6 +162,33 @@
         background-color: var(--blue);
         color: white;
         font-size: 1.25rem;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 4rem;
+    }
+
+    .box-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .tool-thumbnail-wrap {
+        flex-shrink: 0;
+        width: 120px;
+        max-width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: stretch;
+    }
+
+    .tool-thumbnail {
+        max-width: 120px;
+        width: auto;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
     }
 
     .box-content > p {
@@ -158,13 +201,16 @@
     }
 
     section{
+        width: 100%;
         max-width: var(--site-width);
         margin: 0 auto;
+        box-sizing: border-box;
     }
 
     /* if screen is smaller then 1200 */
     @media screen and (max-width: 1200px){
         section{
+            width: 100%;
             margin: 0 4rem;
         }
     }

@@ -4,17 +4,18 @@
 
     let rotation = 0;
     function handleClick( e ){
+        if (!button.expends) return;
 
-        let clicked_box = e.target.parentElement;
-        clicked_box.classList.toggle("expended");
+        const clicked_box = e.currentTarget.closest('.box');
+        if (!clicked_box) return;
 
-        // toggle the hidden class of the box-content
-        let content = clicked_box.getElementsByClassName("box-content");
-        for(let i = 0; i < content.length; i++){
-            content[i].classList.toggle("hidden");
+        clicked_box.classList.toggle('expended');
+
+        const content = clicked_box.getElementsByClassName('box-content');
+        for (let i = 0; i < content.length; i++) {
+            content[i].classList.toggle('hidden');
         }
 
-        // check if the box is expended, rotate the arrow
         rotation += 45;
     }
 
@@ -22,53 +23,60 @@
 
 <div class="box" id="{button.Title.toLowerCase().replaceAll(" ","-")}" >
     <div class="logo">
-        <img src="{button.logo}" alt="" aria-hidden="true" class="box-logo" />
+        <span
+            class="box-logo"
+            style="-webkit-mask-image: url('{button.logo}'); mask-image: url('{button.logo}');"
+            aria-hidden="true"
+        ></span>
     </div>
     
     <!-- This gets replaced on click -->
-    <div class="box-content" style="pointer-events:none">
+    <div class="box-content">
         <h3>{button.Title}</h3>
         <p class="box-text">{button.ShortContent}</p>
     </div>
 
     <!-- For Flood Net and Flood Watch Boxes-->
-    <div class="box-content hidden" style="pointer-events:none">
+    <div class="box-content hidden">
         <h3>{button.Title}</h3>
-        <p class="box-text" style="pointer-events:none">{button.ShortContent}</p>
+        <p class="box-text">{button.ShortContent}</p>
         
         <!-- if there is a LongContent key in the button -->
         {#if Object.keys(button).includes("LongContent")}
             <!-- Link the the site -->
-
-            <a class="titlelink" href={button.LongContent.Link} target="_blank" style="pointer-events:all !important">
+            <div class="titlelink">
                 <img src="./assets/icons/arrow_black.svg" alt="" aria-hidden="true" class="arrow">
-                <span>{button.LongContent.Title}</span>
-            </a>
+                <a style="color:var(--blue);cursor:pointer;" href={button.LongContent.Link} aria-label="Go to project site for {button.Title}" >{button.LongContent.Title}</a>
+            </div>
             
-            <p class="long-content" style="pointer-events:none">{button.LongContent.Content}</p>
-            <img class='long-image' src="./assets/{button.LongContent.image}" alt="Dashboard Screenshot" style="pointer-events:none">
+            <p class="long-content">{button.LongContent.Content}</p>
+            <img class='long-image' src="./assets/{button.LongContent.image}" alt="Dashboard Screenshot">
         {/if}
     </div>
 
     <!-- The expender button + x -->
     {#if button.expends}
-
-        <div class="expender" on:click={ (e) => handleClick(e) } on:keypress={ (e) => handleClick(e) } role="button" aria-pressed="false" tabindex="0" aria-label="Expand the card to view more information on {button.Title}">
+        <button class="expender" on:click={ (e) => handleClick(e) } aria-label="Expand the card to view more information on {button.Title}">
             <div class="image-position">
-                <img src="./assets/icons/FN_FW_UI_icon_open.svg" alt="" aria-hidden='true' class="expends-button" style="transform:rotate({rotation}deg)" >
+                <span
+                    class="expends-button expends-open"
+                    style="transform: rotate({rotation}deg)"
+                    aria-hidden="true"
+                ></span>
             </div>
-        </div>
+        </button>
 
     {:else}
         <a href="{button.link}" class="expender" target="_blank" aria-label="Visit {button.Title} page (open in a new tab)">
             <div class="image-position">
-                <img src="./assets/icons/UI_icon__arrow.svg" alt="" aria-hidden='true' class="expends-button" >
+                <span class="expends-button expends-arrow" aria-hidden="true"></span>
             </div>
         </a>
     {/if}
 </div>
 
 <style>
+
 
     .image-position{
         width: 100%;
@@ -77,24 +85,39 @@
     }
 
     .expends-button{
-        filter: invert(1);
-        height: 25px;
-        width: auto;
-        top:10px;
-        right:10px;
         position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        background-color: white;
+        transition: background-color 0.5s linear, transform 0.5s linear;
+        -webkit-mask: center / contain no-repeat;
+        mask: center / contain no-repeat;
     }
 
-    .box-content{
-        user-select: none;
-        z-index: 10;
-        cursor: pointer;
+    .expends-arrow {
+        -webkit-mask-image: url('assets/icons/UI_icon__arrow.svg');
+        mask-image: url('assets/icons/UI_icon__arrow.svg');
     }
 
+    .expends-open {
+        -webkit-mask-image: url('assets/icons/FN_FW_UI_icon_open.svg');
+        mask-image: url('assets/icons/FN_FW_UI_icon_open.svg');
+    }
+
+    .box:hover > .logo > .box-logo {
+        background-color: var(--light-orange);
+    }
+
+    .box:hover > .expender > .image-position > .expends-button {
+        background-color: var(--light-orange);
+    }
     .box > .expender{
         position: absolute;
         top: 0;
         right: 0;
+        cursor: pointer;
         border: none;
         color: var(--text-color);
         background-color: transparent;
@@ -102,29 +125,35 @@
         outline: none;
         width: 100%;
         height: 100%;
-        padding: 0 !important;
-        z-index: 0;
+        padding: 0 !important
     }
 
     .box:hover > .expender{
-        transition: linear 0.5s;
         color: var(--light-orange);
     }
 
-    .box:hover > .expender > .image-position > img{
-        filter: invert(100%) sepia(94%) saturate(2937%) hue-rotate(306deg) brightness(101%) contrast(108%);
-        transition: linear 0.5s;
-    }
-    
-    :global( .expended > .expender){
+    :global(.expended > .expender){
         transition: linear 0.5s;
         background-color: transparent !important;
         color: var(--blue) !important;
+        width: 4rem;
+        height: 4rem;
     }
 
-    :global( .expended > .expender > .image-position > img ){
-        transition: linear 0.5s;
-        filter: invert(60%) sepia(11%) saturate(1646%) hue-rotate(169deg) brightness(92%) contrast(97%) !important;
+    :global(.expended) .titlelink{
+        pointer-events: auto;
+    }
+
+    :global(.expended) .titlelink a{
+        pointer-events: auto;
+    }
+
+    .titlelink .arrow{
+        width: 2.5rem;
+    }
+
+    :global(.expended > .expender > .image-position > .expends-button){
+        background-color: var(--blue) !important;
     }
 
     .arrow{
@@ -133,8 +162,8 @@
         filter: invert(85%) sepia(48%) saturate(6687%) hue-rotate(351deg) brightness(98%) contrast(102%);
     }
 
-    .titlelink:hover {
-        background-color: rgb(245, 245, 245);
+    .titlelink:hover > .arrow{
+        filter: invert(1);
     }
 
     .titlelink{
@@ -152,6 +181,15 @@
         z-index: 1000;
     }
 
+    .titlelink:hover{
+        background-color: var(--orange);
+        color: var(--white);
+    }
+
+    .titlelink:hover > a{
+        color: var(--white) !important;
+    }
+
     img{
         width:100%;
         height: auto;
@@ -159,6 +197,13 @@
 
     :global(.md){
         margin: 0;
+    }
+
+    .box-content{
+        user-select: none;
+        z-index: 10;
+        pointer-events: none;
+        cursor: pointer;
     }
 
     .box-content > p{
@@ -226,9 +271,13 @@
     }
 
     .box-logo{
+        display: block;
         width: 100%;
-        height: auto;
-        filter: invert(1);
+        aspect-ratio: 1;
+        background-color: white;
+        transition: background-color 0.5s linear;
+        -webkit-mask: center / contain no-repeat;
+        mask: center / contain no-repeat;
     }
 
     .logo{
@@ -237,7 +286,7 @@
     }
 
     :global(.expended > .logo > .box-logo){
-        filter:  invert(60%) sepia(11%) saturate(1646%) hue-rotate(169deg) brightness(92%) contrast(97%) !important;
+        background-color: var(--blue) !important;
     }
 
 
