@@ -1,1 +1,0 @@
-import{default as n}from"../chunks/_layout.CpOpr-BO.js";const e=!1,o=!1,t=Object.freeze(Object.defineProperty({__proto__:null,prerender:o,ssr:e},Symbol.toStringTag,{value:"Module"}));export{n as component,t as universal};

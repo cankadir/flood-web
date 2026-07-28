@@ -3,10 +3,23 @@
 
     import Card from "$lib/card.svelte";
     import ImgGrid from '$lib/imgGrid.svelte';
-    import { reportsPromo } from '$lib/reportsPromo.js';
+
+    const reportsBannerItem = {
+        Title: 'NYC Neighborhood Flood Reports',
+        link: '#/local-reports',
+        ShortContent: 'View and download information about flooding in your neighborhood, including what it looks like, how often it happens, and how deep the water gets at select locations. These reports draw on photographs from community members like you, data from flood sensors, and NYC 311 calls related to flooding. They are updated annually.',
+        mapImage: 'assets/reports-map.png',
+    };
 
     let buttonsContent = [
-        reportsPromo,
+        {
+            Title: 'NYC Neighborhood Flood Reports',
+            link: '#/local-reports',
+            ShortContent: 'View and download reports about flooding in your neighborhood',
+            logo: 'assets/icons/FN_FW__local_reports.svg',
+            order: 1,
+            expends: false
+        },
         {
             Title: 'Flood Tools & Resources',
             order: 2,
@@ -90,21 +103,21 @@
 <section >
     <div class="page-content">
         <a
-            href={reportsPromo.link}
+            href={reportsBannerItem.link}
             class="reports-feature"
-            aria-label="Visit {reportsPromo.Title} page"
+            aria-label="Visit {reportsBannerItem.Title} page"
         >
             <div class="reports-feature-image">
                 <img
-                    src={reportsPromo.mapImage}
+                    src={reportsBannerItem.mapImage}
                     alt=""
                     aria-hidden="true"
                     loading="lazy"
                 />
             </div>
             <div class="reports-feature-text">
-                <h3>{reportsPromo.Title}</h3>
-                <p class="reports-feature-subtitle">{reportsPromo.ShortContent}</p>
+                <h3>{reportsBannerItem.Title}</h3>
+                <p class="reports-feature-subtitle">{reportsBannerItem.ShortContent}</p>
             </div>
         </a>
 

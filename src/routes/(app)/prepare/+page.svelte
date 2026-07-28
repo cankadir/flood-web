@@ -20,6 +20,9 @@
         const data_simple = at_data.records.map(prep => prep.fields);
         data_simple.sort((a, b) => a.order - b.order);
 
+        console.log(data_simple);
+
+        console.log(data_simple);
         return data_simple.reduce((r, a) => {
             r[a.Title] = r[a.Title] || [];
             r[a.Title].push(a);
