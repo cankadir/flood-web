@@ -22,7 +22,6 @@
 
         console.log(data_simple);
 
-        console.log(data_simple);
         return data_simple.reduce((r, a) => {
             r[a.Title] = r[a.Title] || [];
             r[a.Title].push(a);

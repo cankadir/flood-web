@@ -232,6 +232,7 @@
                     {:else}
                         <div class="info" style="padding:0 {pad}rem">
                             <p>Neighborhood flood reports were created in conversation with communities in flood prone areas across NYC who wanted an easy way to gather verified information about flooding their neighborhoods. You could use these reports to share information with your elected officials, as a classroom tool, or to organize your community to find ways to prepare for and respond to flooding. If you have questions or want to share a story about how you’ve used these reports, get in touch with us!</p>
+                            <p>These reports only visualize data from flood sensors that have been active for more than 180 days. Reports do not include floods with a max depth below 1 inch.</p>
                             <p><strong>Contribute your own information:</strong><br>Submit a flood photo to the MyCoast NY app, and you may see your experience reflected in the next set of neighborhood flood reports.</p>
                         </div>
                     {/if}
